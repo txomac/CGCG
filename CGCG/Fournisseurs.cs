@@ -8,14 +8,14 @@ namespace CGCG
 {
     class Fournisseurs
     {
-        public char nom { get; set; }
+        public string nom { get; set; }
 
-        public char prenom { get; set; }
+        public string prenom { get; set; }
 
-        public char societe { get; set; }
+        public string societe { get; set; }
 
-        public char email { get; set; }
+        public string email { get; set; }
 
-        public char adresse { get; set; }
+        public string adresse { get; set; }
     }
 }
