@@ -8,11 +8,11 @@ namespace CGCG
 {
     class References
     {
-        public char reference { get; set; }
+        public string reference { get; set; }
 
-        public char libelle { get; set; }
+        public string libelle { get; set; }
 
-        public char marque { get; set; }
+        public string marque { get; set; }
 
         public bool desactive { get; set; }
 
