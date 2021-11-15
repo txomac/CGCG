@@ -8,9 +8,6 @@ namespace CGCG
 {
     class Adherents
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public string nom { get; set; }
 
         public string prenom { get; set; }
