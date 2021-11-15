@@ -8,5 +8,10 @@ namespace CGCG
 {
     class Panier_Global_Detail
     {
+        public int quantite { get; set; }
+
+        public int ID_References { get; set; }
+
+        public int ID_Panier_Global { get; set; }
     }
 }

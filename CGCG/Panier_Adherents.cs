@@ -8,5 +8,8 @@ namespace CGCG
 {
     class Panier_Adherents
     {
+        public int ID_Adherents { get; set; }
+
+        public int ID_Panier_Global { get; set; }
     }
 }
