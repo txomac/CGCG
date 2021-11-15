@@ -6,7 +6,7 @@ namespace CGCG
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("CGCG2");
+            Console.WriteLine("CGCG");
         }
     }
 }
