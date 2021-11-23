@@ -44,13 +44,13 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into Adherents(nom,prenom,societe,email,adresse,dateadhesion)" + "values (@nom, @prenom,@societe,@email,@adresse,@dateadhesion)";
-                commande.Parameters.Add(new SqlParameter("@nom", nom));
-                commande.Parameters.Add(new SqlParameter("@prenom", prenom));
-                commande.Parameters.Add(new SqlParameter("@societe", societe));
-                commande.Parameters.Add(new SqlParameter("@email", email));
-                commande.Parameters.Add(new SqlParameter("@adresse", adresse));
-                commande.Parameters.Add(new SqlParameter("@dateadhesion", dateadhesion));
+                commande.CommandText = "insert into adherents(nom,prenom,societe,email,adresse,dateadhesion)" + "values (@NOM, @PRENOM,@SOCIETE,@EMAIL,@ADRESSE,@DATEADHESION)";
+                commande.Parameters.Add(new SqlParameter("@NOM", nom));
+                commande.Parameters.Add(new SqlParameter("@PRENOM", prenom));
+                commande.Parameters.Add(new SqlParameter("@SOCIETE", societe));
+                commande.Parameters.Add(new SqlParameter("@EMAIL", email));
+                commande.Parameters.Add(new SqlParameter("@ADRESSE", adresse));
+                commande.Parameters.Add(new SqlParameter("@DATEADHESION", dateadhesion));
                 commande.ExecuteNonQuery();
             }
         }
