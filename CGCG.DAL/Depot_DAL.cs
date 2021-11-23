@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace CGCG.DAL
 {
-    abstract class Depot_DAL<Type_DAL> : IDepot_DAL<Type_DAL>
+    public abstract class Depot_DAL<Type_DAL> : IDepot_DAL<Type_DAL>
     {
         public string ChaineDeConnexion { get; set; }
 
@@ -19,10 +18,11 @@ namespace CGCG.DAL
         public Depot_DAL()
         {
             var builder = new ConfigurationBuilder();
-            var config = builder.AddJsonFile("appsettings.json", true, true).Build();
+            var config = builder.AddJsonFile("appsettings.json", false, true).Build();
 
-            ChaineDeConnexion = config.GetSection("ConnectionStrings;default").Value;
+            ChaineDeConnexion = config.GetSection("ConnectionStrings:default").Value;
         }
+
         protected void CreerConnexionEtCommande()
         {
             connexion = new SqlConnection(ChaineDeConnexion);
@@ -38,8 +38,8 @@ namespace CGCG.DAL
             connexion.Dispose();
         }
 
-
         #region Méthodes abstraites
+
         public abstract void Delete(Type_DAL item);
 
         public abstract List<Type_DAL> GetAll();
