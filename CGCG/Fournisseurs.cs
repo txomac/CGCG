@@ -17,5 +17,22 @@ namespace CGCG
         public string email { get; set; }
 
         public string adresse { get; set; }
+
+        public int id { get; set; }
+
+        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse)
+        {
+            nom = Nom;
+            prenom = Prenom;
+            societe = Societe;
+            email = Email;
+            adresse = Adresse;
+        }
+
+        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
+            :this(Nom, Prenom, Societe, Email, Adresse)
+        {
+            id = ID;
+        }
     }
 }
