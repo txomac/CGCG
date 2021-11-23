@@ -8,6 +8,8 @@ namespace CGCG
 {
     class Panier_Adherents_Details
     {
+        public int id { get; set; }
+
         public int quantite { get; set; }
 
         public int ID_References { get; set; }

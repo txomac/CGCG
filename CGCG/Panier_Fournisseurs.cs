@@ -8,6 +8,8 @@ namespace CGCG
 {
     class Panier_Fournisseurs
     {
+        public int id { get; set; }
+
         public float puht { get; set; }
 
         public int ID_Panier_Global { get; set; }
