@@ -8,7 +8,11 @@ namespace CGCG
 {
     class Panier_Global
     {
-    public int id { get; set; }
-    public int semaine { get; set; }
+        public int semaine { get; set; }
+
+        public Panier_Global(int Semaine)
+        {
+            semaine = Semaine;
+        }
     }
 }
