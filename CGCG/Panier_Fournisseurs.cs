@@ -15,5 +15,6 @@ namespace CGCG
         public int ID_Panier_Global { get; set; }
 
         public int ID_Fournisseurs { get; set; }
+
     }
 }

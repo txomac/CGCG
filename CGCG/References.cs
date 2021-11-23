@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class References
+    public class References
     {
         public int id { get; set; }
         public string reference { get; set; }
