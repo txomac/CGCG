@@ -8,6 +8,7 @@ namespace CGCG
 {
     class References
     {
+        public int id { get; set; }
         public string reference { get; set; }
 
         public string libelle { get; set; }

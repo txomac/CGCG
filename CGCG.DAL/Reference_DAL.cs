@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CGCG
+namespace CGCG.DAL
 {
-    class Panier_Global
+    class Reference_DAL
     {
-    public int id { get; set; }
-    public int semaine { get; set; }
     }
 }
