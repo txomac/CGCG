@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Adherents
+    public class Adherents
     {
         public string nom { get; set; }
 
@@ -19,5 +19,23 @@ namespace CGCG
         public string adresse { get; set; }
 
         public DateTime dateadhesion { get; set; }
+
+        public int ID { get; set; }
+
+        public Adherents(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+        {
+            nom = Nom;
+            prenom = Prenom;
+            societe = Societe;
+            email = Email;
+            adresse = Adresse;
+            dateadhesion = Dateadhesion;
+        }
+
+        public Adherents(int id, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+            :this(Nom,Prenom,Societe,Email,Adresse,Dateadhesion)
+        {
+            ID = id;
+        }
     }
 }
