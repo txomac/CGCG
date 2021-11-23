@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG.DAL
 {
-    class FournissuersDepot_DAL
+    class FournisseursDepot_DAL
     {
     }
 }
