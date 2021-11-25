@@ -8,7 +8,8 @@ namespace CGCG
 {
     public class Panier_Adherents
     {
-        public List<Panier_Global> lepanierglobal;
+        public List<Panier_Global> lespanierglobal;
+
         public List<Adherents> lesadherents;
 
         public int id { get; set; }
@@ -24,7 +25,7 @@ namespace CGCG
         }
 
         public Panier_Adherents(int ID, int ID_adherents, int ID_panier_global)
-            : this(ID_adherents, ID_panier_global)
+            :this(ID_adherents, ID_panier_global)
         {
             id = ID;
         }
@@ -34,9 +35,9 @@ namespace CGCG
             lesadherents.AddRange(desadherents);
         }
 
-        public Panier_Adherents(Panier_Global[] Unpanierglobal)
+        public Panier_Adherents(Panier_Global[] despanierglobal)
         {
-            lepanierglobal.AddRange(Unpanierglobal);
+            lespanierglobal.AddRange(despanierglobal);
         }
 
     }
