@@ -8,6 +8,10 @@ namespace CGCG
 {
     public class Panier_Global_Detail
     {
+        public List<References> lesreferences;
+
+        public List<Panier_Global> lespanierglobal;
+
         public int id { get; set; }
 
         public int quantite { get; set; }
@@ -27,6 +31,16 @@ namespace CGCG
             :this(Quantite, ID_References, ID_Panier_Global)
         {
             id = ID;
+        }
+
+        public Panier_Global_Detail(References[] desreferences)
+        {
+            lesreferences.AddRange(desreferences);
+        }
+
+        public Panier_Global_Detail(Panier_Global[] despanierglobal)
+        {
+            lespanierglobal.AddRange(despanierglobal);
         }
     }
 }
