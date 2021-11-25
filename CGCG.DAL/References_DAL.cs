@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace CGCG.DAL
 {
-    class References_DAL
+    public class References_DAL
     {
         public int id { get; set; }
+
         public string reference { get; set; }
 
         public string libelle { get; set; }

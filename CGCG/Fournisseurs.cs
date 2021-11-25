@@ -20,17 +20,20 @@ namespace CGCG
 
         public int id { get; set; }
 
-        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse)
+        public int id_panier_fournisseur { get; set; }
+
+        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse, int ID_Panier_Fournisseur)
         {
             nom = Nom;
             prenom = Prenom;
             societe = Societe;
             email = Email;
             adresse = Adresse;
+            id_panier_fournisseur = ID_Panier_Fournisseur;
         }
 
-        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
-            :this(Nom, Prenom, Societe, Email, Adresse)
+        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, int ID_Panier_Fournisseur)
+            :this(Nom, Prenom, Societe, Email, Adresse, ID_Panier_Fournisseur)
         {
             id = ID;
         }

@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Panier_Fournisseurs
+    class Panier_Fournisseurs : List<Fournisseurs>
     {
+        public List<Fournisseurs> lesfournisseurs;
+
         public int id { get; set; }
 
         public float puht { get; set; }
 
-        public int ID_Panier_Global { get; set; }
+        public Panier_Fournisseurs(float Puht)
+        {
+            puht = Puht;
+        }
 
-        public int ID_Fournisseurs { get; set; }
+        public Panier_Fournisseurs(int ID, float Puht)
+            :this(Puht)
+        {
+            id = ID;
+        }
 
+        public Panier_Fournisseurs (Fournisseurs[] desfournisseurs)
+        {
+            lesfournisseurs.AddRange(desfournisseurs);
+        }
     }
 }
