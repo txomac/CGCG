@@ -8,8 +8,8 @@ namespace CGCG
 {
     class Fournisseurs_References
     {
-        public int ID_Fournisseurs { get; set; }
+        public int id_fournisseurs { get; set; }
 
-        public int ID_References { get; set; }
+        public int id_references { get; set; }
     }
 }

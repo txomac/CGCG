@@ -17,7 +17,7 @@ namespace CGCG
 
         public bool desactive { get; set; }
 
-        public int id_Fournisseurs { get; set; }
+        public int id_fournisseurs { get; set; }
 
         public References (string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
         {
@@ -25,7 +25,7 @@ namespace CGCG
             libelle = Libelle;
             marque = Marque;
             desactive = Desactive;
-            id_Fournisseurs = ID_Fournisseurs;
+            id_fournisseurs = ID_Fournisseurs;
         }
         public References(int ID, string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
            : this(Reference, Libelle, Marque, Desactive, ID_Fournisseurs)
