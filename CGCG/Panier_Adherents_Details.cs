@@ -12,8 +12,8 @@ namespace CGCG
 
         public int quantite { get; set; }
 
-        public int ID_References { get; set; }
+        public int id_references { get; set; }
 
-        public int ID_Panier_Adhents { get; set; }
+        public int id_panier_Adhents { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace CGCG
     {
         public int id { get; set; }
 
-        public int ID_Adherents { get; set; }
+        public int id_adherents { get; set; }
 
-        public int ID_Panier_Global { get; set; }
+        public int id_panier_global { get; set; }
     }
 }
