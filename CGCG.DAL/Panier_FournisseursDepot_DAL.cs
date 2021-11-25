@@ -64,7 +64,9 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_fournisseur(puht)" + " values (); select scope_identity()";
+            commande.CommandText = "insert into panier_fournisseur(puht)" + " values (@PUHT); select scope_identity()";
+            commande.Parameters.Add(new SqlParameter("@PUHT", panier.puht));
+
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
             panier.puht = GetByID(ID).puht;
