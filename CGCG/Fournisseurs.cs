@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Fournisseurs
+    public class Fournisseurs
     {
         public string nom { get; set; }
 
@@ -20,20 +20,17 @@ namespace CGCG
 
         public int id { get; set; }
 
-        public int id_panier_fournisseur { get; set; }
-
-        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse, int ID_Panier_Fournisseur)
+        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse)
         {
             nom = Nom;
             prenom = Prenom;
             societe = Societe;
             email = Email;
             adresse = Adresse;
-            id_panier_fournisseur = ID_Panier_Fournisseur;
         }
 
-        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, int ID_Panier_Fournisseur)
-            :this(Nom, Prenom, Societe, Email, Adresse, ID_Panier_Fournisseur)
+        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
+            :this(Nom, Prenom, Societe, Email, Adresse)
         {
             id = ID;
         }
