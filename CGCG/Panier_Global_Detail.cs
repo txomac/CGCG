@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Panier_Global_Detail
+    public class Panier_Global_Detail
     {
         public int id { get; set; }
 

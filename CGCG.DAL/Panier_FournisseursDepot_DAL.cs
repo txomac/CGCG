@@ -13,10 +13,11 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, puht from panier_fournisseurs";
+            commande.CommandText = "select id, puht, id_fournisseur, id_panier_global_details from panier_fournisseurs";
             var reader = commande.ExecuteReader();
 
             var depotFournisseur = new FournisseursDepot_DAL();
+            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
 
             var listePanier = new List<Panier_Fournisseurs_DAL>();
 
@@ -44,6 +45,7 @@ namespace CGCG.DAL
             var reader = commande.ExecuteReader();
 
             var depotFournisseurs = new FournisseursDepot_DAL();
+            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
 
             Panier_Fournisseurs_DAL p;
 
@@ -78,6 +80,7 @@ namespace CGCG.DAL
             panier.puht = GetByID(ID).puht;
             panier.id_fournisseur = GetByID(ID).id_fournisseur;
             panier.id_panier_global_detail = GetByID(ID).id_panier_global_detail;
+
             DetruireConnexionEtCommande();
 
             var depotFournisseur = new FournisseursDepot_DAL();
@@ -85,6 +88,13 @@ namespace CGCG.DAL
             {
                 item.id = ID;
                 depotFournisseur.Insert(item);
+            }
+
+            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
+            foreach (var item in panier.Panier_Global_Detail)
+            {
+                item.id = ID;
+                depotPanierGlobalDetail.Insert(item);
             }
 
             return panier;
@@ -105,6 +115,8 @@ namespace CGCG.DAL
             }
 
             panier.puht = GetByID(panier.id).puht;
+            panier.id_fournisseur = GetByID(panier.id).id_fournisseur;
+            panier.id_panier_global_detail = GetByID(panier.id).id_panier_global_detail;
 
             DetruireConnexionEtCommande();
 
@@ -112,6 +124,12 @@ namespace CGCG.DAL
             foreach (var item in panier.Fournisseurs)
             {
                 depotFournisseur.Update(item);
+            }
+
+            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
+            foreach (var item in panier.Panier_Global_Detail)
+            {
+                depotPanierGlobalDetail.Insert(item);
             }
 
             return panier;

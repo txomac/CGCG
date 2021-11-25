@@ -25,8 +25,7 @@ namespace CGCG.DAL
                                             reader.GetString(2),
                                             reader.GetString(3),
                                             reader.GetString(4),
-                                            reader.GetString(5),
-                                            reader.GetInt32(6));
+                                            reader.GetString(5));
                 listeDeFournisseurs.Add(f);
             }
 
@@ -51,8 +50,7 @@ namespace CGCG.DAL
                                         reader.GetString(2),
                                         reader.GetString(3),
                                         reader.GetString(4),
-                                        reader.GetString(5),
-                                        reader.GetInt32(6));
+                                        reader.GetString(5));
             }
             else
                 throw new Exception($"Pas de fournisseur dans la BDD avec l'ID {ID}");
