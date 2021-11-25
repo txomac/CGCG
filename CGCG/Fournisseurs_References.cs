@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Fournisseurs_References
+    public class Fournisseurs_References
     {
         public int id_fournisseurs { get; set; }
-
         public int id_references { get; set; }
+
     }
 }

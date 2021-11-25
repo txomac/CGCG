@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Panier_Fournisseurs : List<Fournisseurs>
+    public class Panier_Fournisseurs : List<Fournisseurs>
     {
         public List<Fournisseurs> lesfournisseurs;
 
