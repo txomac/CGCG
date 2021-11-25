@@ -8,7 +8,10 @@ namespace CGCG
 {
     public class References
     {
+        public List<Fournisseurs> lesfournisseurs;
+
         public int id { get; set; }
+
         public string reference { get; set; }
 
         public string libelle { get; set; }
@@ -19,7 +22,7 @@ namespace CGCG
 
         public int id_fournisseurs { get; set; }
 
-        public References (string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
+        public References(string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
         {
             reference = Reference;
             libelle = Libelle;
@@ -31,6 +34,11 @@ namespace CGCG
            : this(Reference, Libelle, Marque, Desactive, ID_Fournisseurs)
         {
             id = ID;
+        }
+
+        public References(Fournisseurs[] desfournisseurs)
+        {
+            lesfournisseurs.AddRange(desfournisseurs);
         }
     }
 }

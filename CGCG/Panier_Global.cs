@@ -20,7 +20,6 @@ namespace CGCG
             :this(Semaine)
         {
             id = ID;
-            semaine = Semaine;
         }
     }
 }
