@@ -21,7 +21,7 @@ namespace CGCG.DAL
 
         public DateTime dateadhesion { get; set; }
 
-        public int ID { get; set; }
+        public int id { get; set; }
 
         public Adherents_DAL(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
         {
@@ -33,10 +33,10 @@ namespace CGCG.DAL
             dateadhesion = Dateadhesion;
         }
 
-        public Adherents_DAL(int id, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+        public Adherents_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
             : this(Nom, Prenom, Societe, Email, Adresse, Dateadhesion)
         {
-            ID = id;
+            id = ID;
         }
 
         internal void Insert(SqlConnection connexion)

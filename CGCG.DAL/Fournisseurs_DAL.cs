@@ -41,8 +41,8 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into Adherents(nom, prenom, societe, email, adresse)" + "values (@nom, @prenom, @societe, @email, @adresse)";
-                commande.Parameters.Add(new SqlParameter("@nom", id));
+                commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse)" + "values (@nom, @prenom, @societe, @email, @adresse)";
+                commande.Parameters.Add(new SqlParameter("@nom", nom));
                 commande.Parameters.Add(new SqlParameter("@prenom", prenom));
                 commande.Parameters.Add(new SqlParameter("@societe", societe));
                 commande.Parameters.Add(new SqlParameter("@email", email));
