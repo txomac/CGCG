@@ -9,10 +9,6 @@ namespace CGCG.DAL
 {
     public class Fournisseurs_References_DAL
     {
-        public List<Fournisseurs_DAL> Fournisseurs;
-
-        public List<References_DAL> References;
-
         public int id { get; set; }
 
         public int id_fournisseurs { get; set; }
@@ -41,18 +37,6 @@ namespace CGCG.DAL
 
                 commande.CommandText = "insert into fournisseurs_references (id_fournisseurs, id_references)";
                 id = (int)commande.ExecuteScalar();
-            }
-
-            foreach (var item in Fournisseurs)
-            {
-                item.id = id_fournisseurs;
-                item.Insert(connexion);
-            }
-
-            foreach (var item in References)
-            {
-                item.id = id_references;
-                item.Insert(connexion);
             }
 
             connexion.Close();

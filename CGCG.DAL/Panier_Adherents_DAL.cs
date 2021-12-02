@@ -9,10 +9,6 @@ namespace CGCG.DAL
 {
     public class Panier_Adherents_DAL
     {
-        public List<Panier_Global_DAL> lepanierglobal { get; set; }
-
-        public List<Adherents_DAL> Adherents { get; set; }
-
         public int id { get; set; }
 
         public int id_adherents { get; set; }
@@ -45,17 +41,6 @@ namespace CGCG.DAL
                 id = (int)commande.ExecuteScalar();
             }
 
-            foreach (var item in Adherents)
-            {
-                item.id = id_adherents;
-                item.Insert(connexion);
-            }
-
-            foreach (var item in lepanierglobal)
-            {
-                item.id = id_panier_global;
-                item.Insert(connexion);
-            }
             connexion.Close();
 
         }

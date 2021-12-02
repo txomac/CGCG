@@ -8,10 +8,6 @@ namespace CGCG
 {
     public class Fournisseurs_References
     {
-        public List<Fournisseurs> lesfournisseurs;
-
-        public List<References> lesreferences;
-
         int id { get; set; }
 
         public int id_fournisseurs { get; set; }
@@ -28,16 +24,6 @@ namespace CGCG
             : this(ID_Fournisseurs, ID_References)
         {
             id = ID;
-        }
-
-        public Fournisseurs_References(Fournisseurs[] desfournisseurs)
-        {
-            lesfournisseurs.AddRange(desfournisseurs);
-        }
-
-        public Fournisseurs_References(References[] desreferences)
-        {
-            lesreferences.AddRange(desreferences);
         }
     }
 }

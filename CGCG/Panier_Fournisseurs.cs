@@ -8,10 +8,6 @@ namespace CGCG
 {
     public class Panier_Fournisseurs : List<Fournisseurs>
     {
-        public List<Fournisseurs> lesfournisseurs;
-
-        public List<Panier_Global_Detail> lespanierglobaldetail;
-
         public int id { get; set; }
 
         public float puht { get; set; }
@@ -31,16 +27,6 @@ namespace CGCG
             :this(Puht, ID_Fournisseur, ID_Panier_Global_Detail)
         {
             id = ID;
-        }
-
-        public Panier_Fournisseurs(Fournisseurs[] desfournisseurs)
-        {
-            lesfournisseurs.AddRange(desfournisseurs);
-        }
-
-        public Panier_Fournisseurs(Panier_Global_Detail[] despanierglobaldetail)
-        {
-            lespanierglobaldetail.AddRange(despanierglobaldetail);
         }
     }
 }

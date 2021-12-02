@@ -100,6 +100,7 @@ namespace CGCG.DAL
 
             return references;
         }
+
         public override void Delete(References_DAL references)
         {
             CreerConnexionEtCommande();

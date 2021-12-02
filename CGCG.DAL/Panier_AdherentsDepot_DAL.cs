@@ -72,13 +72,6 @@ namespace CGCG.DAL
             panier.id_panier_global = GetByID(ID).id_panier_global;
             DetruireConnexionEtCommande();
 
-            var depotAdherent = new AdherentDepot_DAL();
-            foreach (var item in panier.Adherents)
-            {
-                item.id = ID;
-                depotAdherent.Insert(item);
-            }
-
             return panier;
         }
 
@@ -100,12 +93,6 @@ namespace CGCG.DAL
             panier.id_panier_global = GetByID(panier.id).id_panier_global;
 
             DetruireConnexionEtCommande();
-
-            var depotPanierGlobal = new AdherentDepot_DAL();
-            foreach (var item in panier.Adherents)
-            {
-                depotPanierGlobal.Update(item);
-            }
 
             return panier;
         }

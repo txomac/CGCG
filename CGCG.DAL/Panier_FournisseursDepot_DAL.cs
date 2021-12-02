@@ -77,20 +77,6 @@ namespace CGCG.DAL
 
             DetruireConnexionEtCommande();
 
-            var depotFournisseur = new FournisseursDepot_DAL();
-            foreach (var item in panier.Fournisseurs)
-            {
-                item.id = ID;
-                depotFournisseur.Insert(item);
-            }
-
-            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
-            foreach (var item in panier.Panier_Global_Detail)
-            {
-                item.id = ID;
-                depotPanierGlobalDetail.Insert(item);
-            }
-
             return panier;
         }
 
@@ -113,18 +99,6 @@ namespace CGCG.DAL
             panier.id_panier_global_detail = GetByID(panier.id).id_panier_global_detail;
 
             DetruireConnexionEtCommande();
-
-            var depotFournisseur = new FournisseursDepot_DAL();
-            foreach (var item in panier.Fournisseurs)
-            {
-                depotFournisseur.Update(item);
-            }
-
-            var depotPanierGlobalDetail = new Panier_Global_DetailDepot_DAL();
-            foreach (var item in panier.Panier_Global_Detail)
-            {
-                depotPanierGlobalDetail.Insert(item);
-            }
 
             return panier;
         }

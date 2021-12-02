@@ -76,20 +76,6 @@ namespace CGCG.DAL
             panier.id_panier_global = GetByID(ID).id_panier_global;
             DetruireConnexionEtCommande();
 
-            var depotPanierGlobal = new Panier_GlobalDepot_DAL();
-            foreach (var item in panier.Panier_Global)
-            {
-                item.id = ID;
-                depotPanierGlobal.Insert(item);
-            }
-
-            var depotReferences = new ReferencesDepot_DAL();
-            foreach (var item in panier.References)
-            {
-                item.id = ID;
-                depotReferences.Insert(item);
-            }
-
             return panier;
         }
 
@@ -112,18 +98,6 @@ namespace CGCG.DAL
             panier.id_panier_global = GetByID(panier.id).id_panier_global;
 
             DetruireConnexionEtCommande();
-
-            var depotPanierGlobal = new Panier_GlobalDepot_DAL();
-            foreach (var item in panier.Panier_Global)
-            {
-                depotPanierGlobal.Update(item);
-            }
-
-            var depotReferences = new ReferencesDepot_DAL();
-            foreach (var item in panier.References)
-            {
-                depotReferences.Update(item);
-            }
 
             return panier;
         }

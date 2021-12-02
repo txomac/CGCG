@@ -9,10 +9,6 @@ namespace CGCG.DAL
 {
     public class Panier_Global_Detail_DAL
     {
-        public List<References_DAL> References { get; set; }
-
-        public List<Panier_Global_DAL> Panier_Global { get; set; }
-
         public int id { get; set; }
 
         public int quantite { get; set; }
@@ -44,18 +40,6 @@ namespace CGCG.DAL
 
                 commande.CommandText = "insert into panier_global_detail (id, quantite, id_references, id_panier_global)";
                 id = (int)commande.ExecuteScalar();
-            }
-
-            foreach (var item in References)
-            {
-                item.id = id_references;
-                item.Insert(connexion);
-            }
-
-            foreach (var item in Panier_Global)
-            {
-                item.id = id_panier_global;
-                item.Insert(connexion);
             }
 
             connexion.Close();

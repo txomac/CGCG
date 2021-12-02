@@ -76,7 +76,7 @@ namespace CGCG.DAL
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
-            adherent.ID = ID;
+            adherent.id = ID;
 
             DetruireConnexionEtCommande();
 
@@ -88,7 +88,7 @@ namespace CGCG.DAL
 
             commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION)"
                                     + " where ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", adherent.ID));
+            commande.Parameters.Add(new SqlParameter("@ID", adherent.id));
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
@@ -99,7 +99,7 @@ namespace CGCG.DAL
 
             if (nombreDeLignesAffectees != 1)
             {
-                throw new Exception($"Impossible de mettre à jour l'adhérent d'ID {adherent.ID}");
+                throw new Exception($"Impossible de mettre à jour l'adhérent d'ID {adherent.id}");
             }
 
             DetruireConnexionEtCommande();
