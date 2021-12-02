@@ -16,9 +16,6 @@ namespace CGCG.DAL
             commande.CommandText = "select id, id_fournisseur, id_references from fournisseurs_references";
             var reader = commande.ExecuteReader();
 
-            var depotFournisseur = new FournisseursDepot_DAL();
-            var depotReference = new ReferencesDepot_DAL();
-
             var listePanier = new List<Fournisseurs_References_DAL>();
 
             while (reader.Read())
@@ -42,9 +39,6 @@ namespace CGCG.DAL
             commande.CommandText = "select id, id_fournisseurs, id_references from fournisseurs_references where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
-
-            var depotFournisseurs = new FournisseursDepot_DAL();
-            var depotReferences = new ReferencesDepot_DAL();
 
             Fournisseurs_References_DAL p;
 

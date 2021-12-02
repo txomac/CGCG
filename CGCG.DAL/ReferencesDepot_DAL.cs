@@ -24,7 +24,8 @@ namespace CGCG.DAL
                                             reader.GetString(1),
                                             reader.GetString(2),
                                             reader.GetString(3),
-                                            reader.GetBoolean(4));
+                                            reader.GetBoolean(4),
+                                            reader.GetInt32(5));
                 listeReferences.Add(r);
             }
 
@@ -40,81 +41,76 @@ namespace CGCG.DAL
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
-            References_DAL adherent;
+            References_DAL references;
             if (reader.Read())
             {
-                adherent = new Adherents_DAL(reader.GetInt32(0),
+                references = new References_DAL(reader.GetInt32(0),
                                             reader.GetString(1),
                                             reader.GetString(2),
                                             reader.GetString(3),
-                                            reader.GetString(4),
-                                            reader.GetString(5),
-                                            reader.GetDateTime(6));
+                                            reader.GetBoolean(4),
+                                            reader.GetInt32(5));
             }
             else
                 throw new Exception($"Pas de point dans la BDD avec l'ID {ID}");
 
             DetruireConnexionEtCommande();
 
-            return adherent;
+            return references;
         }
-        public override Adherents_DAL Insert(Adherents_DAL adherent)
+        public override References_DAL Insert(References_DAL references)
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into adherents(nom, prenom, societe, email, adresse, dateadhesion)"
-                                    + " values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION); select scope_identity()";
-            commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
-            commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.adresse));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.dateadhesion));
-
+            commande.CommandText = "insert into references(references, libele, marque, desactive, id_fournisseurs)"
+                                    + " values (@REFERENCES, @LIBELE, @MARQUE, @DESACTIVE, @ID_FOURNISSEURS); select scope_identity()";
+            commande.Parameters.Add(new SqlParameter("@REFERENCES", references.reference));
+            commande.Parameters.Add(new SqlParameter("@LIBELE", references.libelle));
+            commande.Parameters.Add(new SqlParameter("@MARQUE", references.marque));
+            commande.Parameters.Add(new SqlParameter("@DESACTIVE", references.desactive));
+            commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEURS", references.id_fournisseurs));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
-            adherent.ID = ID;
+            references.id = ID;
 
             DetruireConnexionEtCommande();
 
-            return adherent;
+            return references;
         }
-        public override Adherents_DAL Update(Adherents_DAL adherent)
+        public override References_DAL Update(References_DAL references)
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION)"
+            commande.CommandText = "update references set references=@REFERENCES, libele=@LIBELE, marque=@MARQUE, desactive=@DESACTIVE, id_fournisseurs=@ID_FOURNISSEURS)"
                                     + " where ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", adherent.ID));
-            commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
-            commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
-            commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.adresse));
-            commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@REFERENCES", references.reference));
+            commande.Parameters.Add(new SqlParameter("@LIBELE", references.libelle));
+            commande.Parameters.Add(new SqlParameter("@MARQUE", references.marque));
+            commande.Parameters.Add(new SqlParameter("@DESACTIVE", references.desactive));
+            commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEURS", references.id_fournisseurs));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)
             {
-                throw new Exception($"Impossible de mettre à jour l'adhérent d'ID {adherent.ID}");
+                throw new Exception($"Impossible de mettre à jour la référence d'ID {references.id}");
             }
 
             DetruireConnexionEtCommande();
 
-            return adherent;
+            return references;
         }
-        public override void Delete(Adherents_DAL adherent)
+        public override void Delete(References_DAL references)
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "delete from adherents where ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", adherent.ID));
+            commande.CommandText = "delete from references where ID=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", references.id));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)
             {
-                throw new Exception($"Impossible de supprimer l'adherent d'ID {adherent.ID}");
+                throw new Exception($"Impossible de supprimer la référence d'ID {references.id}");
             }
 
             DetruireConnexionEtCommande();

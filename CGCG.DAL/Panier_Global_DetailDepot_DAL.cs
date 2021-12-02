@@ -16,9 +16,6 @@ namespace CGCG.DAL
             commande.CommandText = "select id, quantite, id_references, id_panier_global from panier_global_detail";
             var reader = commande.ExecuteReader();
 
-            var depotPanierGlobal = new Panier_GlobalDepot_DAL();
-            var depotReferences = new ReferencesDepot_DAL();
-
             var listePanier = new List<Panier_Global_Detail_DAL>();
 
             while (reader.Read())
@@ -43,10 +40,6 @@ namespace CGCG.DAL
             commande.CommandText = "select id, quantite, id_references, id_panier_global from panier_global_detail where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
-
-            var depotPanierGlobal = new Panier_GlobalDepot_DAL();
-            var depotReferences = new ReferencesDepot_DAL();
-
 
             Panier_Global_Detail_DAL p;
 

@@ -19,7 +19,7 @@ namespace CGCG.DAL
 
         public bool desactive { get; set; }
 
-        public int id_Fournisseurs { get; set; }
+        public int id_fournisseurs { get; set; }
 
         public References_DAL(string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
         {
@@ -27,7 +27,7 @@ namespace CGCG.DAL
             libelle = Libelle;
             marque = Marque;
             desactive = Desactive;
-            id_Fournisseurs = ID_Fournisseurs;
+            id_fournisseurs = ID_Fournisseurs;
         }
         public References_DAL(int ID, string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
            : this(Reference, Libelle, Marque, Desactive, ID_Fournisseurs)
@@ -40,11 +40,12 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into reference(reference,libelle,marque,desactive)" + "values (@REFERENCE, @LIBELLE,@MARQUE,@DESACTIVE)";
+                commande.CommandText = "insert into reference(reference, libelle, marque, desactive, id_fournisseurs)" + "values (@REFERENCE, @LIBELLE,@MARQUE,@DESACTIVE, @ID_FOURNISSEURS)";
                 commande.Parameters.Add(new SqlParameter("@REFERENCE", reference));
                 commande.Parameters.Add(new SqlParameter("@LIBELLE", libelle));
                 commande.Parameters.Add(new SqlParameter("@MARQUE", marque));
                 commande.Parameters.Add(new SqlParameter("@DESACTIVE", desactive));
+                commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEURS", id_fournisseurs));
                 commande.ExecuteNonQuery();
             }
         }
