@@ -20,7 +20,7 @@ namespace CGCG
 
         public DateTime dateadhesion { get; set; }
 
-        public int ID { get; set; }
+        public int id { get; set; }
 
         public Adherents(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
         {
@@ -32,10 +32,10 @@ namespace CGCG
             dateadhesion = Dateadhesion;
         }
 
-        public Adherents(int id, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+        public Adherents(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
             :this(Nom,Prenom,Societe,Email,Adresse,Dateadhesion)
         {
-            ID = id;
+            id = ID;
         }
     }
 }
