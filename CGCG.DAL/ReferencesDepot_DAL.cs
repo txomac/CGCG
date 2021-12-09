@@ -82,7 +82,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update references set references=@REFERENCES, libele=@LIBELE, marque=@MARQUE, desactive=@DESACTIVE, id_fournisseurs=@ID_FOURNISSEURS)"
+            commande.CommandText = "update [references] set references=@REFERENCES, libele=@LIBELE, marque=@MARQUE, desactive=@DESACTIVE, id_fournisseurs=@ID_FOURNISSEURS)"
                                     + " where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@REFERENCES", references.reference));
             commande.Parameters.Add(new SqlParameter("@LIBELE", references.libelle));
@@ -112,6 +112,22 @@ namespace CGCG.DAL
             if (nombreDeLignesAffectees != 1)
             {
                 throw new Exception($"Impossible de supprimer la référence d'ID {references.id}");
+            }
+
+            DetruireConnexionEtCommande();
+        }
+
+        public void DesactiverReference(int ID)
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "update [references] set desactive=@DESACTIVE where ID=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", ID));
+            var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
+
+            if (nombreDeLignesAffectees != 1)
+            {
+                throw new Exception($"Impossible de mettre a jour la ligne desactive d'ID {ID}");
             }
 
             DetruireConnexionEtCommande();
