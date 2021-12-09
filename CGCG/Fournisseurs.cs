@@ -34,5 +34,14 @@ namespace CGCG
         {
             id = ID;
         }
+
+        public void Liaison(References reference)
+        {
+            int id_fournisseur = this.id;
+            int id_reference = reference.id;
+
+            
+
+        }
     }
 }

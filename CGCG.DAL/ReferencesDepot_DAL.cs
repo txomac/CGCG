@@ -37,7 +37,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, adresse, dateadhesion from adherents where ID=@id";
+            commande.CommandText = "select id,reference,libelle,marque,desactive, id_fournisseurs from [references] where id=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 

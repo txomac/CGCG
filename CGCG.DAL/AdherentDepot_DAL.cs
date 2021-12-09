@@ -111,12 +111,12 @@ namespace CGCG.DAL
             CreerConnexionEtCommande();
 
             commande.CommandText = "delete from adherents where ID=@ID";
-            commande.Parameters.Add(new SqlParameter("@ID", adherent.ID));
+            commande.Parameters.Add(new SqlParameter("@ID", adherent.id));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)
             {
-                throw new Exception($"Impossible de supprimer l'adherent d'ID {adherent.ID}");
+                throw new Exception($"Impossible de supprimer l'adherent d'ID {adherent.id}");
             }
 
             DetruireConnexionEtCommande();

@@ -9,7 +9,7 @@ namespace CGCG.DAL
 {
     public class Fournisseurs_References_DAL
     {
-        public int id { get; set; }
+      
 
         public int id_fournisseurs { get; set; }
 
@@ -21,12 +21,7 @@ namespace CGCG.DAL
             id_references = ID_References;
         }
 
-        public Fournisseurs_References_DAL(int ID, int ID_Fournisseurs, int ID_References)
-            :this(ID_Fournisseurs, ID_References)
-        {
-            id = ID;
-        }
-
+      
         public void Insert(SqlConnection connexion)
         {
             connexion.Open();
@@ -35,8 +30,9 @@ namespace CGCG.DAL
             {
                 commande.Connection = connexion;
 
-                commande.CommandText = "insert into fournisseurs_references (id_fournisseurs, id_references)";
-                id = (int)commande.ExecuteScalar();
+                commande.CommandText = "insert into fournisseurs_references (id_fournisseurs, id_references)" + "values(@FOURNISSEUR, @REFERENCE)";
+                commande.Parameters.Add(new SqlParameter("@FOURNISSEUR", id_fournisseurs));
+                commande.Parameters.Add(new SqlParameter("@REFERENCE", id_references));
             }
 
             connexion.Close();
