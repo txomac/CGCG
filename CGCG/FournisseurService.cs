@@ -27,24 +27,22 @@ namespace CGCG
         }
         public Fournisseurs Insert(Fournisseurs f)
         {
-            var poly = new Polygone_DAL(t.Select(p => new Point_DAL(p.X, p.Y)));
-            depot.Insert(poly);
+            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.adresse);
+            depot.Insert(fournisseur);
 
-            t.ID = poly.ID;
-
-            return t;
+            return f;
         }
         public Fournisseurs Update(Fournisseurs f)
         {
-            var poly = new Polygone_DAL(t.ID, null, null, t.Select(p => new Point_DAL(p.X, p.Y)));
-            depot.Update(poly);
+            var fournisseur= new Fournisseurs_DAL(f.nom,f.prenom,f.societe,f.email,f.adresse );
+            depot.Update(fournisseur);
 
-            return t;
+            return f;
         }
         public void Delete(Fournisseurs f) 
         {
-            var poly = new Polygone_DAL(t.ID, null, null, t.Select(p => new Point_DAL(p.X, p.Y)));
-            depot.Delete(poly);
+            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.adresse);
+            depot.Delete(fournisseur);
         }
     }
 }
