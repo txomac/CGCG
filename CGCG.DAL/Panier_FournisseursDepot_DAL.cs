@@ -21,7 +21,7 @@ namespace CGCG.DAL
             while (reader.Read())
             {
                 var p = new Panier_Fournisseurs_DAL(reader.GetInt32(0),
-                                                    reader.GetFloat(1),
+                                                    Convert.ToSingle(reader.GetDouble(1)),
                                                     reader.GetInt32(2),
                                                     reader.GetInt32(3));
 
