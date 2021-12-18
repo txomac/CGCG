@@ -12,20 +12,20 @@ namespace CGCG
     {
         private Panier_FournisseursDepot_DAL depot = new Panier_FournisseursDepot_DAL();
 
-        public List<Panier_fournisseurs> GetAllPanier_fournisseurs()
+        public List<Panier_Fournisseurs> GetAllPanier_Fournisseurs()
         {
-            var Fournisseurs = depot.GetAll() //retourne tous les fournisseurs (fournisser_DAL) de la BDD
-                    .Select(f => new Fournisseurs(f.id, f.nom, f.prenom, f.societe, f.email, f.adresse))
+            var Panier_Fournisseurs = depot.GetAll() //retourne tous les fournisseurs (fournisser_DAL) de la BDD
+                    .Select(f => new Panier_Fournisseurs(f.id, f.puht, f.id_fournisseur, f.id_panier_global_detail))
                     .ToList();
 
-            return Fournisseurs;
+            return Panier_Fournisseurs;
         }
-        public Panier_fournisseurs Insert(Panier_fournisseurs pf)
+        public Panier_Fournisseurs Insert(Panier_Fournisseurs pf)
         {
-            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.adresse);
-            depot.Insert(fournisseur);
+            var Panier_Fournisseurs = new Panier_Fournisseurs_DAL(pf.puht, pf.id_fournisseur, pf.id_panier_global_detail);
+            depot.Insert(Panier_Fournisseurs);
 
-            return f;
+            return pf;
         }
     }
 }
