@@ -118,5 +118,24 @@ namespace CGCG.DAL
 
             DetruireConnexionEtCommande();
         }
+
+        public List<Int32> GetAllQuantite()
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "select quantite from panier_global_detail";
+            var reader = commande.ExecuteReader();
+
+            var listeQuantite = new List<Int32>();
+
+            while (reader.Read())
+            {
+                listeQuantite.Add(reader.GetInt32(0));
+            }
+
+            DetruireConnexionEtCommande();
+
+            return listeQuantite;
+        }
     }
 }

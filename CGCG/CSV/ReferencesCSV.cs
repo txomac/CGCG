@@ -8,11 +8,11 @@ using CGCG.DAL;
 
 namespace CGCG
 {
-    public class AdherentCSV
+    public class ReferencesCSV
     {
-        public void ActionCSV(Fournisseurs fournisseur)
+        public void ActionAddCSVReference(Fournisseurs fournisseur)
         {
-            var reader = new StreamReader(File.OpenRead(@"D:\New folder\Data.csv"));
+            var reader = new StreamReader(File.OpenRead(@"D:\New folder\Data.csv")); //todo : add path directory
             List<string> referencelist = new List<string>();
             List<string> libelle = new List<string>();
             List<string> marque = new List<string>();
@@ -25,7 +25,7 @@ namespace CGCG
                 libelle.Add(values[1]);
                 marque.Add(values[2]);
 
-                References referenceAdd = new References(referencelist[0], libelle[1], marque[2], false, fournisseur.id);
+                References referenceAdd = new References(referencelist[0], libelle[0], marque[0], false, fournisseur.id);
 
                 References_DAL referenceDAL = new References_DAL(referenceAdd.reference, referenceAdd.libelle, referenceAdd.marque,referenceAdd.desactive,referenceAdd.id);
 

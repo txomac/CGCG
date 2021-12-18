@@ -132,5 +132,45 @@ namespace CGCG.DAL
 
             DetruireConnexionEtCommande();
         }
+
+        public int GetNomReferenceWithID(string Reference)
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "select id from [references] where reference=@REFERENCE";
+            commande.Parameters.Add(new SqlParameter("@REFERENCE", Reference));
+            var reader = commande.ExecuteReader();
+
+            var references = 0;
+            if (reader.Read())
+            {
+                references = reader.GetInt32(0);
+            }
+            else
+                throw new Exception($"Il n'y a pas de reference de nom : {Reference}");
+
+            DetruireConnexionEtCommande();
+
+            return references;
+        }
+
+        public List<string> GetAllReference()
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "select reference from [references]";
+            var reader = commande.ExecuteReader();
+
+            var listeReferences = new List<string>();
+
+            while (reader.Read())
+            {
+                listeReferences.Add(reader.GetString(0));
+            }
+
+            DetruireConnexionEtCommande();
+
+            return listeReferences;
+        }
     }
 }
