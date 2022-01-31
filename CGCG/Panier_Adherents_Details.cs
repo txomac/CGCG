@@ -14,17 +14,17 @@ namespace CGCG
 
         public int id_references { get; set; }
 
-        public int id_panier_adhents { get; set; }
+        public int id_panier_adherents { get; set; }
 
-        public Panier_Adherents_Details(int Quantite, int ID_References, int ID_Panier_Adherants)
+        public Panier_Adherents_Details(int Quantite, int ID_References, int ID_Panier_Adherents)
         {
             quantite = Quantite;
             id_references = ID_References;
-            id_panier_adhents = ID_Panier_Adherants;
+            id_panier_adherents = ID_Panier_Adherents;
         }
 
-        public Panier_Adherents_Details(int ID, int Quantite, int ID_References, int ID_Panier_Adherants)
-            :this(Quantite, ID_References, ID_Panier_Adherants)
+        public Panier_Adherents_Details(int ID, int Quantite, int ID_References, int ID_Panier_Adherents)
+            :this(Quantite, ID_References, ID_Panier_Adherents)
         {
             id = ID;
         }
