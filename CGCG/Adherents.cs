@@ -8,6 +8,8 @@ namespace CGCG
 {
     public class Adherents
     {
+        public int id { get; set; }
+
         public string nom { get; set; }
 
         public string prenom { get; set; }
@@ -19,8 +21,6 @@ namespace CGCG
         public string adresse { get; set; }
 
         public DateTime dateadhesion { get; set; }
-
-        public int id { get; set; }
 
         public Adherents(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
         {
