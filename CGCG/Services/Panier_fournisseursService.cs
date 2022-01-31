@@ -8,7 +8,7 @@ using CGCG.DAL;
 
 namespace CGCG
 {
-    class Panier_fournisseursService : IPanier_FournisseursService
+    class Panier_FournisseursService : IPanier_FournisseursService
     {
         private Panier_FournisseursDepot_DAL depot = new Panier_FournisseursDepot_DAL();
 
