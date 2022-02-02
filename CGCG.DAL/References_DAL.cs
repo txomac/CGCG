@@ -21,7 +21,7 @@ namespace CGCG.DAL
 
         public int id_fournisseurs { get; set; }
 
-        public References_DAL(string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
+        public References_DAL(string Reference, string Libelle, string Marque, int ID_Fournisseurs, bool Desactive)
         {
             reference = Reference;
             libelle = Libelle;
@@ -29,8 +29,8 @@ namespace CGCG.DAL
             desactive = Desactive;
             id_fournisseurs = ID_Fournisseurs;
         }
-        public References_DAL(int ID, string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
-           : this(Reference, Libelle, Marque, Desactive, ID_Fournisseurs)
+        public References_DAL(int ID, string Reference, string Libelle, string Marque, int ID_Fournisseurs, bool Desactive)
+           : this(Reference, Libelle, Marque, ID_Fournisseurs, Desactive)
         {
             id = ID;
         }

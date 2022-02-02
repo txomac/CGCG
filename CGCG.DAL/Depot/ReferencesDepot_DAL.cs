@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, reference, libelle, marque, desactive from references";
+            commande.CommandText = "select id, reference, libelle, marque, id_fournisseurs, desactive from references";
             var reader = commande.ExecuteReader();
 
             var listeReferences = new List<References_DAL>();
@@ -24,8 +24,9 @@ namespace CGCG.DAL
                                             reader.GetString(1),
                                             reader.GetString(2),
                                             reader.GetString(3),
-                                            reader.GetBoolean(4),
-                                            reader.GetInt32(5));
+                                            reader.GetInt32(4),
+                                            reader.GetBoolean(5));
+                                            
                 listeReferences.Add(r);
             }
 
@@ -37,7 +38,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id,reference,libelle,marque,desactive, id_fournisseurs from [references] where id=@ID";
+            commande.CommandText = "select id,reference,libelle,marque,id_fournisseurs, desactive  from [references] where id=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -48,8 +49,9 @@ namespace CGCG.DAL
                                             reader.GetString(1),
                                             reader.GetString(2),
                                             reader.GetString(3),
-                                            reader.GetBoolean(4),
-                                            reader.GetInt32(5));
+                                            reader.GetInt32(4),
+                                            reader.GetBoolean(5));
+                                            
             }
             else
                 throw new Exception($"Pas de point dans la BDD avec l'ID {ID}");
