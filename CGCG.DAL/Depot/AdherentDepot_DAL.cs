@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, adresse, dateadhesion from adherents";
+            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion from adherents";
             var reader = commande.ExecuteReader();
 
             var listeDAdherents = new List<Adherents_DAL>();
@@ -38,7 +38,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, adresse, dateadhesion from adherents where ID=@id";
+            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion from adherents where ID=@id";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -64,7 +64,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into adherents(nom, prenom, societe, email, adresse, dateadhesion)"
+            commande.CommandText = "insert into adherents(nom, prenom, societe, email, addresse, dateadhesion)"
                                     + " values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));

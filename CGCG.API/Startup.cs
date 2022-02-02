@@ -32,7 +32,7 @@ namespace CGCG.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CGCG.API", Version = "v1" });
             });
-
+            
             services.AddSingleton(typeof(IReferencesService), new ReferencesService());
             services.AddSingleton(typeof(IFournisseurs_ReferencesService), new Fournisseurs_ReferencesService());
             services.AddSingleton(typeof(IFournisseursService), new FournisseurService());
@@ -40,6 +40,7 @@ namespace CGCG.API
             services.AddSingleton(typeof(IPanier_FournisseursService), new Panier_FournisseursService());
             services.AddSingleton(typeof(IPanier_GlobalService), new Panier_GlobalService());
             services.AddSingleton(typeof(IAdherentsService), new AdherentsService());
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
