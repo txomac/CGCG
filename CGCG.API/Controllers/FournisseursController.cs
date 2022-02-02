@@ -19,7 +19,7 @@ namespace CGCG.API.Controllers
             service = srv;
         }
 
-        [HttpGet]
+        [HttpGet("All")]
         public IEnumerable<Fournisseurs_DTO> GetAllFournisseurs()
         {
             return service.GetAllFournisseurs().Select(f => new Fournisseurs_DTO()
@@ -42,5 +42,23 @@ namespace CGCG.API.Controllers
             //je renvoie l'objet DTO
             return f;
         }
+
+        [HttpPost("{id}")]
+        public Fournisseurs_DTO GetFournisseursByID([FromRoute] int id)
+        {
+            var f = service.GetFournisseursByID(id);
+
+            return new Fournisseurs_DTO()
+            {
+                id = f.id,
+                nom = f.nom,
+                prenom = f.prenom,
+                societe = f.societe,
+                email = f.email,
+                adresse = f.adresse
+            };
+        }
+
+
     }
 }
