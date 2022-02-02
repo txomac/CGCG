@@ -30,7 +30,7 @@ namespace CGCG
 
         public References Insert(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
 
             depot.Insert(references);
 
@@ -39,7 +39,7 @@ namespace CGCG
 
         public References Update(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
 
             depot.Update(references);
 
@@ -48,7 +48,7 @@ namespace CGCG
 
         public void Delete(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
 
             depot.Delete(references);
         }

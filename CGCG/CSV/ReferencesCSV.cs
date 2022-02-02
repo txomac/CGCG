@@ -27,7 +27,7 @@ namespace CGCG
 
                 References referenceAdd = new References(referencelist[0], libelle[0], marque[0], false, fournisseur.id);
 
-                References_DAL referenceDAL = new References_DAL(referenceAdd.reference, referenceAdd.libelle, referenceAdd.marque,referenceAdd.desactive,referenceAdd.id);
+                References_DAL referenceDAL = new References_DAL(referenceAdd.reference, referenceAdd.libelle, referenceAdd.marque, referenceAdd.id, referenceAdd.desactive);
 
                 var depotReference = new ReferencesDepot_DAL();
 

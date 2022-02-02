@@ -20,7 +20,7 @@ namespace CGCG.API.Controllers
                 service = srv;
             }
 
-            [HttpGet]
+            [HttpGet("All")]
             public IEnumerable<Reference_DTO> GetAllReference()
             {
                 return service.GetAllReferences().Select(r => new Reference_DTO()
@@ -34,7 +34,35 @@ namespace CGCG.API.Controllers
                 });
             }
 
-            [HttpPost]
+        [HttpGet("{id}")]
+        public Reference_DTO GetIDAdherent([FromRoute] int id)
+        {
+            var r = service.GetReferencesByID(id);
+            return new Reference_DTO()
+            {
+                id = r.id,
+                reference = r.reference,
+                libelle = r.libelle,
+                marque = r.marque,
+                desactive = r.desactive,
+                id_fournisseurs = r.id_fournisseurs,
+            };
+        }
+        [HttpPut]
+        public Reference_DTO GetPutAdherent(Reference_DTO r)
+        {
+            var r_metier = service.Update(new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs));
+            r.id = r_metier.id;
+            r.reference = r_metier.reference;
+            r.libelle = r_metier.libelle;
+            r.marque = r_metier.marque;
+            r.desactive = r_metier.desactive;
+            r.id_fournisseurs = r_metier.id_fournisseurs;
+            return r;
+
+        }
+
+        [HttpPost]
         public Reference_DTO Insert(Reference_DTO r)
         {
             var r_metier = service.Insert(new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs));
