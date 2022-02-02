@@ -30,7 +30,7 @@ namespace CGCG
 
         public Panier_Adherents_Details Insert(Panier_Adherents_Details p)
         {
-            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adhents, p.id_references);
+            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adherents, p.id_references);
 
             depot.Insert(panier);
 
@@ -39,7 +39,7 @@ namespace CGCG
 
         public Panier_Adherents_Details Update(Panier_Adherents_Details p)
         {
-            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adhents, p.id_references);
+            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adherents, p.id_references);
 
             depot.Update(panier);
 
@@ -48,7 +48,7 @@ namespace CGCG
 
         public void Delete(Panier_Adherents_Details p)
         {
-            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adhents, p.id_references);
+            var panier = new Panier_Adherent_Details_DAL(p.id, p.quantite, p.id_panier_adherents, p.id_references);
 
             depot.Delete(panier);
         }

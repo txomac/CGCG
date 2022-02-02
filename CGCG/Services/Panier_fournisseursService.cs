@@ -8,9 +8,9 @@ using CGCG.DAL;
 
 namespace CGCG
 {
-    class Panier_FournisseursService : IPanier_FournisseursService
+    public class Panier_FournisseursService : IPanier_FournisseursService
     {
-        private Panier_FournisseursDepot_DAL depot = new Panier_FournisseursDepot_DAL();
+        public Panier_FournisseursDepot_DAL depot = new Panier_FournisseursDepot_DAL();
 
         public List<Panier_Fournisseurs> GetAllPanier_Fournisseurs()
         {
