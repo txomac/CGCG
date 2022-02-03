@@ -60,7 +60,7 @@ namespace CGCG.API.Controllers
         }
 
         [HttpPut]
-        public Fournisseurs_DTO GetPutAdherent(Fournisseurs_DTO f)
+        public Fournisseurs_DTO GetPutFournisseur(Fournisseurs_DTO f)
         {
             var f_metier = service.Update(new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.adresse));
             f.id = f_metier.id;

@@ -20,7 +20,7 @@ namespace CGCG.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Panier_Global_Details_DTO> GetAllPanier_Global_Details()
+        public IEnumerable<Panier_Global_Details_DTO> GetAllPanierGlobalDetails()
         {
             return service.GetAllPanierGlobalDetail().Select(p => new Panier_Global_Details_DTO()
             {
@@ -29,6 +29,17 @@ namespace CGCG.API.Controllers
                 id_references = p.id_references,
                 id_panier_global = p.id_panier_global
             });
+        }
+
+        [HttpPut]
+        public Panier_Global_Details_DTO GetPutPanierGlobalDetails(Panier_Global_Details_DTO p)
+        {
+            var p_metier = service.Update(new Panier_Global_Detail(p.id, p.quantite, p.id_references, p.id_panier_global));
+            p.id = p_metier.id;
+            p.quantite = p_metier.quantite;
+            p.id_references = p_metier.id_references;
+            p.id_panier_global = p_metier.id_panier_global;
+            return p;
         }
 
         [HttpPost]

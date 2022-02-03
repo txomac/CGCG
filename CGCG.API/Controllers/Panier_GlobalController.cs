@@ -29,6 +29,26 @@ namespace CGCG.API.Controllers
             });
         }
 
+        [HttpGet("{id}")]
+        public Panier_Global_DTO GetIDPanierGlobal([FromRoute] int id)
+        {
+            var p = service.GetPanierGlobalByID(id);
+            return new Panier_Global_DTO()
+            {
+                id = p.id,
+                semaine = p.semaine
+            };
+        }
+
+        [HttpPut]
+        public Panier_Global_DTO GetPutPanierGlobal(Panier_Global_DTO p)
+        {
+            var p_metier = service.Update(new Panier_Global(p.id, p.semaine);
+            p.id = p_metier.id;
+            p.semaine = p_metier.semaine;
+            return p;
+        }
+
         [HttpPost]
         public Panier_Global_DTO Insert(Panier_Global_DTO p)
         {
