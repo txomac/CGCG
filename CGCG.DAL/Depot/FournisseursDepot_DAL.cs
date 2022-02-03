@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, adresse from fournisseurs";
+            commande.CommandText = "select id, nom, prenom, societe, email, addresse from fournisseurs";
             var reader = commande.ExecuteReader();
 
             var listeDeFournisseurs = new List<Fournisseurs_DAL>();

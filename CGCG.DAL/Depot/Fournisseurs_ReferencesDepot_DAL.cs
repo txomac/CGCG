@@ -14,7 +14,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id_fournisseur, id_references from fournisseurs_references";
+            commande.CommandText = "select id_fournisseurs, id_references from fournisseurs_references";
             var reader = commande.ExecuteReader();
 
             var listePanier = new List<Fournisseurs_References_DAL>();
