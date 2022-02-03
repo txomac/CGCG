@@ -59,6 +59,20 @@ namespace CGCG.API.Controllers
             };
         }
 
+        [HttpPut]
+        public Fournisseurs_DTO GetPutAdherent(Fournisseurs_DTO f)
+        {
+            var f_metier = service.Update(new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.adresse));
+            f.id = f_metier.id;
+            f.nom = f_metier.nom;
+            f.prenom = f_metier.prenom;
+            f.societe = f_metier.societe;
+            f.email = f_metier.email;
+            f.adresse = f_metier.adresse;
+            return f;
+        }
+
+
 
     }
 }
