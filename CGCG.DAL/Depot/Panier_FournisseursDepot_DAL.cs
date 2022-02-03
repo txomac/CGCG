@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, puht, id_fournisseur, id_panier_global_details from panier_fournisseurs";
+            commande.CommandText = "select id, puht, id_fournisseurs, id_panier_global_detail from panier_fournisseurs";
             var reader = commande.ExecuteReader();
 
             var listePanier = new List<Panier_Fournisseurs_DAL>();
