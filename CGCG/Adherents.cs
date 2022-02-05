@@ -18,7 +18,7 @@ namespace CGCG
 
         public string email { get; set; }
 
-        public string adresse { get; set; }
+        public string addresse { get; set; }
 
         public DateTime dateadhesion { get; set; }
 
@@ -30,7 +30,7 @@ namespace CGCG
             prenom = Prenom;
             societe = Societe;
             email = Email;
-            adresse = Adresse;
+            addresse = Adresse;
             dateadhesion = Dateadhesion;
             status = Status;
         }

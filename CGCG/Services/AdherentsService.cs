@@ -14,7 +14,7 @@ namespace CGCG
         public List<Adherents> GetAllAdherents()
         {
             var adherents = depot.GetAll()
-                .Select(a => new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status))
+                .Select(a => new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.addresse, a.dateadhesion, a.status))
                 .ToList();
 
             return adherents;
@@ -23,14 +23,14 @@ namespace CGCG
         public Adherents GetAdherentsByID(int ID)
         {
             var a = depot.GetByID(ID);
-            var adherents = new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status);
+            var adherents = new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.addresse, a.dateadhesion, a.status);
 
             return adherents;
         }
 
         public Adherents Insert(Adherents a)
         {
-            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status);
+            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.addresse, a.dateadhesion, a.status);
 
             depot.Insert(adherents);
 
@@ -39,7 +39,7 @@ namespace CGCG
 
         public Adherents Update(Adherents a)
         {
-            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status);
+            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.addresse, a.dateadhesion, a.status);
 
             depot.Update(adherents);
 
@@ -48,7 +48,7 @@ namespace CGCG
 
         public void Delete(Adherents a)
         {
-            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status);
+            var adherents = new Adherents_DAL(a.id, a.nom, a.prenom, a.societe, a.email, a.addresse, a.dateadhesion, a.status);
 
             depot.Delete(adherents);
         }

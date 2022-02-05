@@ -29,7 +29,7 @@ namespace CGCG.API.Controllers
                 prenom = a.prenom,
                 societe = a.societe,
                 email = a.email,
-                adresse = a.adresse,
+                adresse = a.addresse,
                 dateadhesion = a.dateadhesion,
                 status = a.status
             });
@@ -46,7 +46,7 @@ namespace CGCG.API.Controllers
                 prenom = a.prenom,
                 societe = a.societe,
                 email = a.email,
-                adresse = a.adresse,
+                adresse = a.addresse,
                 dateadhesion = a.dateadhesion,
                 status = a.status
             };
@@ -61,7 +61,7 @@ namespace CGCG.API.Controllers
             a.prenom = a_metier.prenom;
             a.societe = a_metier.societe;
             a.email = a_metier.email;
-            a.adresse = a_metier.adresse;
+            a.adresse = a_metier.addresse;
             a.dateadhesion = a_metier.dateadhesion;
             a.status = a_metier.status;
             return a;

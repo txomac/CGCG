@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, references, libelle, marque, id_fournisseurs, desactive from references";
+            commande.CommandText = "select id, reference, libelle, marque, id_fournisseurs, desactive from [references]";
             var reader = commande.ExecuteReader();
 
             var listeReferences = new List<References_DAL>();
@@ -64,9 +64,9 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into references(references, libele, marque, desactive, id_fournisseurs)"
-                                    + " values (@REFERENCES, @LIBELE, @MARQUE, @DESACTIVE, @ID_FOURNISSEURS); select scope_identity()";
-            commande.Parameters.Add(new SqlParameter("@REFERENCES", references.reference));
+            commande.CommandText = "insert into [references](reference, libelle, marque, desactive, id_fournisseurs)"
+                                    + " values (@REFERENCE, @LIBELE, @MARQUE, @DESACTIVE, @ID_FOURNISSEURS); select scope_identity()";
+            commande.Parameters.Add(new SqlParameter("@REFERENCE", references.reference));
             commande.Parameters.Add(new SqlParameter("@LIBELE", references.libelle));
             commande.Parameters.Add(new SqlParameter("@MARQUE", references.marque));
             commande.Parameters.Add(new SqlParameter("@DESACTIVE", references.desactive));
@@ -84,8 +84,8 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update [references] set references=@REFERENCES, libele=@LIBELE, marque=@MARQUE, desactive=@DESACTIVE, id_fournisseurs=@ID_FOURNISSEURS)"
-                                    + " where ID=@ID";
+            commande.CommandText = "update [references] set reference=@REFERENCES, libelle=@LIBELE, marque=@MARQUE, desactive=@DESACTIVE, id_fournisseurs=@ID_FOURNISSEURS where ID=@ID;";
+            commande.Parameters.Add(new SqlParameter("@ID", references.id));
             commande.Parameters.Add(new SqlParameter("@REFERENCES", references.reference));
             commande.Parameters.Add(new SqlParameter("@LIBELE", references.libelle));
             commande.Parameters.Add(new SqlParameter("@MARQUE", references.marque));

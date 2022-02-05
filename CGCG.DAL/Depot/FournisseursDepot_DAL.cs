@@ -88,8 +88,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update fournisseurs set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, addresse=@ADRESSE, status=@STATUS"
-                                    + " where id=@ID";
+            commande.CommandText = "update fournisseurs set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, addresse=@ADRESSE, status=@STATUS where ID=@ID;";
             commande.Parameters.Add(new SqlParameter("@ID", fournisseurs.id));
             commande.Parameters.Add(new SqlParameter("@NOM", fournisseurs.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", fournisseurs.prenom));

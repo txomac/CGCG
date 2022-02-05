@@ -17,7 +17,7 @@ namespace CGCG.DAL
 
         public string email { get; set; }
 
-        public string adresse { get; set; }
+        public string addresse { get; set; }
 
         public DateTime dateadhesion { get; set; }
 
@@ -31,7 +31,7 @@ namespace CGCG.DAL
             prenom = Prenom;
             societe = Societe;
             email = Email;
-            adresse = Adresse;
+            addresse = Adresse;
             dateadhesion = Dateadhesion;
             status = Status;
         }
@@ -52,7 +52,7 @@ namespace CGCG.DAL
                 commande.Parameters.Add(new SqlParameter("@PRENOM", prenom));
                 commande.Parameters.Add(new SqlParameter("@SOCIETE", societe));
                 commande.Parameters.Add(new SqlParameter("@EMAIL", email));
-                commande.Parameters.Add(new SqlParameter("@ADRESSE", adresse));
+                commande.Parameters.Add(new SqlParameter("@ADRESSE", addresse));
                 commande.Parameters.Add(new SqlParameter("@DATEADHESION", dateadhesion));
                 commande.Parameters.Add(new SqlParameter("@STATUS", status));
                 commande.ExecuteNonQuery();

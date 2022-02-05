@@ -71,9 +71,9 @@ namespace CGCG.DAL
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.adresse));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
+            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.addresse));
+            commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
             commande.Parameters.Add(new SqlParameter("@STATUS", adherent.status));
 
 
@@ -89,14 +89,13 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION, status=@STATUS)"
-                                    + " where ID=@ID";
+            commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, addresse=@ADRESSE, dateadhesion=@DATEADHESION, status=@STATUS where ID=@ID;";
             commande.Parameters.Add(new SqlParameter("@ID", adherent.id));
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
             commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.adresse));
+            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.addresse));
             commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
             commande.Parameters.Add(new SqlParameter("@STATUS", adherent.status));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
