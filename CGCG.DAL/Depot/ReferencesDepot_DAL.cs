@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, reference, libelle, marque, id_fournisseurs, desactive from references";
+            commande.CommandText = "select id, references, libelle, marque, id_fournisseurs, desactive from references";
             var reader = commande.ExecuteReader();
 
             var listeReferences = new List<References_DAL>();
