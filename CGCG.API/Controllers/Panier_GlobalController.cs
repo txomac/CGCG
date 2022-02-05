@@ -43,7 +43,7 @@ namespace CGCG.API.Controllers
         [HttpPut]
         public Panier_Global_DTO GetPutPanierGlobal(Panier_Global_DTO p)
         {
-            var p_metier = service.Update(new Panier_Global(p.id, p.semaine);
+            var p_metier = service.Update(new Panier_Global(p.id, p.semaine));
             p.id = p_metier.id;
             p.semaine = p_metier.semaine;
             return p;
