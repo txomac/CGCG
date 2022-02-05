@@ -74,5 +74,14 @@ namespace CGCG.API.Controllers
             //je renvoie l'objet DTO
             return a;
         }
+
+        [HttpDelete]
+        public void DeleteAdherent(int id)
+        {
+            var f_metier = service.GetAdherentsByID(id);
+
+            service.Delete(f_metier);
+        }
+
     }
 }

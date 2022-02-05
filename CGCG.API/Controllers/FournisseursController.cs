@@ -72,6 +72,14 @@ namespace CGCG.API.Controllers
             return f;
         }
 
+        [HttpDelete]
+        public void DeleteFournisseur(int id)
+        {
+            var f_metier = service.GetFournisseursByID(id);
+
+            service.Delete(f_metier);
+        }
+
 
 
     }
