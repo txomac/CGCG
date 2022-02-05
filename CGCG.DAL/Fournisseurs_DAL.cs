@@ -17,7 +17,7 @@ namespace CGCG.DAL
 
         public string email { get; set; }
 
-        public string adresse { get; set; }
+        public string addresse { get; set; }
 
         public int id { get; set; }
 
@@ -27,7 +27,7 @@ namespace CGCG.DAL
             prenom = Prenom;
             societe = Societe;
             email = Email;
-            adresse = Adresse;
+            addresse = Adresse;
         }
 
         public Fournisseurs_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
@@ -41,12 +41,12 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse)" + "values (@nom, @prenom, @societe, @email, @adresse)";
+                commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse)" + "values (@nom, @prenom, @societe, @email, @addresse)";
                 commande.Parameters.Add(new SqlParameter("@nom", nom));
                 commande.Parameters.Add(new SqlParameter("@prenom", prenom));
                 commande.Parameters.Add(new SqlParameter("@societe", societe));
                 commande.Parameters.Add(new SqlParameter("@email", email));
-                commande.Parameters.Add(new SqlParameter("@adresse", adresse));
+                commande.Parameters.Add(new SqlParameter("@adresse", addresse));
                 commande.ExecuteNonQuery();
             }
         }

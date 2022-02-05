@@ -64,13 +64,13 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse)"
+            commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, addresse)"
                                     + " values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@NOM", fournisseurs.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", fournisseurs.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", fournisseurs.societe));
             commande.Parameters.Add(new SqlParameter("@EMAIL", fournisseurs.email));
-            commande.Parameters.Add(new SqlParameter("@ADRESSE", fournisseurs.adresse));
+            commande.Parameters.Add(new SqlParameter("@ADRESSE", fournisseurs.addresse));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
@@ -85,14 +85,14 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update fournisseurs set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE)"
-                                    + " where ID=@ID";
+            commande.CommandText = "update fournisseurs set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, addresse=@ADRESSE"
+                                    + " where id=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", fournisseurs.id));
             commande.Parameters.Add(new SqlParameter("@NOM", fournisseurs.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", fournisseurs.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", fournisseurs.societe));
             commande.Parameters.Add(new SqlParameter("@EMAIL", fournisseurs.email));
-            commande.Parameters.Add(new SqlParameter("@ADRESSE", fournisseurs.adresse));
+            commande.Parameters.Add(new SqlParameter("@ADRESSE", fournisseurs.addresse));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)

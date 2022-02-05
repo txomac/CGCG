@@ -29,7 +29,7 @@ namespace CGCG.API.Controllers
                 prenom = f.prenom,
                 societe = f.societe,
                 email = f.email,
-                adresse = f.adresse
+                adresse = f.addresse
             });
         }
 
@@ -55,7 +55,7 @@ namespace CGCG.API.Controllers
                 prenom = f.prenom,
                 societe = f.societe,
                 email = f.email,
-                adresse = f.adresse
+                adresse = f.addresse
             };
         }
 
@@ -68,7 +68,7 @@ namespace CGCG.API.Controllers
             f.prenom = f_metier.prenom;
             f.societe = f_metier.societe;
             f.email = f_metier.email;
-            f.adresse = f_metier.adresse;
+            f.adresse = f_metier.addresse;
             return f;
         }
 

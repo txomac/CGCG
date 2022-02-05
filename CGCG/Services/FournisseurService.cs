@@ -14,7 +14,7 @@ namespace CGCG
         public List<Fournisseurs> GetAllFournisseurs()
         {
             var Fournisseurs = depot.GetAll() //retourne tous les fournisseurs (fournisser_DAL) de la BDD
-                    .Select(f => new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.adresse))
+                    .Select(f => new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.addresse))
                     .ToList();
 
             return Fournisseurs;
@@ -22,26 +22,26 @@ namespace CGCG
         public Fournisseurs GetFournisseursByID(int ID) 
         {
             var f = depot.GetByID(ID);
-            var fournisseur = new Fournisseurs(f.id, f.nom, f.prenom, f.societe, f.email, f.adresse);
+            var fournisseur = new Fournisseurs(f.id, f.nom, f.prenom, f.societe, f.email, f.addresse);
             return fournisseur;
         }
         public Fournisseurs Insert(Fournisseurs f)
         {
-            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.adresse);
+            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.addresse);
             depot.Insert(fournisseur);
 
             return f;
         }
         public Fournisseurs Update(Fournisseurs f)
         {
-            var fournisseur= new Fournisseurs_DAL(f.nom,f.prenom,f.societe,f.email,f.adresse );
+            var fournisseur= new Fournisseurs_DAL(f.nom,f.prenom,f.societe,f.email,f.addresse );
             depot.Update(fournisseur);
 
             return f;
         }
         public void Delete(Fournisseurs f) 
         {
-            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.adresse);
+            var fournisseur = new Fournisseurs_DAL(f.nom, f.prenom, f.societe, f.email, f.addresse);
             depot.Delete(fournisseur);
         }
     }
