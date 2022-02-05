@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion from adherents";
+            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion, status from adherents";
             var reader = commande.ExecuteReader();
 
             var listeDAdherents = new List<Adherents_DAL>();
@@ -26,7 +26,8 @@ namespace CGCG.DAL
                                             reader.GetString(3),
                                             reader.GetString(4),
                                             reader.GetString(5),
-                                            reader.GetDateTime(6));
+                                            reader.GetDateTime(6),
+                                            reader.GetBoolean(7));
                 listeDAdherents.Add(a);
             }
 
@@ -38,7 +39,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion from adherents where ID=@id";
+            commande.CommandText = "select id, nom, prenom, societe, email, addresse, dateadhesion, status from adherents where ID=@id";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -51,7 +52,8 @@ namespace CGCG.DAL
                                             reader.GetString(3),
                                             reader.GetString(4),
                                             reader.GetString(5),
-                                            reader.GetDateTime(6));
+                                            reader.GetDateTime(6),
+                                            reader.GetBoolean(7));
             }
             else
                 throw new Exception($"Pas de point dans la BDD avec l'ID {ID}");
@@ -64,14 +66,15 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into adherents(nom, prenom, societe, email, addresse, dateadhesion)"
-                                    + " values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION); select scope_identity()";
+            commande.CommandText = "insert into adherents(nom, prenom, societe, email, addresse, dateadhesion, status)"
+                                    + " values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION, @STATUS); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
-            commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.adresse));
-            commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.email));
+            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.adresse));
+            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@STATUS", adherent.status));
 
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
@@ -86,8 +89,8 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION)"
-                                    + " where id=@ID";
+            commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION, status=@STATUS)"
+                                    + " where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", adherent.id));
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
@@ -95,6 +98,7 @@ namespace CGCG.DAL
             commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
             commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.adresse));
             commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@STATUS", adherent.status));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 
             if (nombreDeLignesAffectees != 1)

@@ -21,9 +21,11 @@ namespace CGCG.DAL
 
         public DateTime dateadhesion { get; set; }
 
+        public bool status { get; set; }
+
         public int id { get; set; }
 
-        public Adherents_DAL(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+        public Adherents_DAL(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion, bool Status)
         {
             nom = Nom;
             prenom = Prenom;
@@ -31,10 +33,11 @@ namespace CGCG.DAL
             email = Email;
             adresse = Adresse;
             dateadhesion = Dateadhesion;
+            status = Status;
         }
 
-        public Adherents_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
-            : this(Nom, Prenom, Societe, Email, Adresse, Dateadhesion)
+        public Adherents_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion, bool Status)
+            : this(Nom, Prenom, Societe, Email, Adresse, Dateadhesion, Status)
         {
             id = ID;
         }
@@ -44,13 +47,14 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into adherents(nom,prenom,societe,email,adresse,dateadhesion)" + "values (@NOM, @PRENOM,@SOCIETE,@EMAIL,@ADRESSE,@DATEADHESION)";
+                commande.CommandText = "insert into adherents(nom, prenom, societe, email, adresse, dateadhesion, status)" + "values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION, @STATUS)";
                 commande.Parameters.Add(new SqlParameter("@NOM", nom));
                 commande.Parameters.Add(new SqlParameter("@PRENOM", prenom));
                 commande.Parameters.Add(new SqlParameter("@SOCIETE", societe));
                 commande.Parameters.Add(new SqlParameter("@EMAIL", email));
                 commande.Parameters.Add(new SqlParameter("@ADRESSE", adresse));
                 commande.Parameters.Add(new SqlParameter("@DATEADHESION", dateadhesion));
+                commande.Parameters.Add(new SqlParameter("@STATUS", status));
                 commande.ExecuteNonQuery();
             }
         }

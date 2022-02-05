@@ -22,7 +22,9 @@ namespace CGCG
 
         public DateTime dateadhesion { get; set; }
 
-        public Adherents(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
+        public bool status { get; set; }
+
+        public Adherents(string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion, bool Status)
         {
             nom = Nom;
             prenom = Prenom;
@@ -30,10 +32,11 @@ namespace CGCG
             email = Email;
             adresse = Adresse;
             dateadhesion = Dateadhesion;
+            status = Status;
         }
 
-        public Adherents(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion)
-            :this(Nom,Prenom,Societe,Email,Adresse,Dateadhesion)
+        public Adherents(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, DateTime Dateadhesion, bool Status)
+            :this(Nom, Prenom, Societe, Email, Adresse, Dateadhesion, Status)
         {
             id = ID;
         }

@@ -30,7 +30,8 @@ namespace CGCG.API.Controllers
                 societe = a.societe,
                 email = a.email,
                 adresse = a.adresse,
-                dateadhesion = a.dateadhesion
+                dateadhesion = a.dateadhesion,
+                status = a.status
             });
         }
 
@@ -46,14 +47,15 @@ namespace CGCG.API.Controllers
                 societe = a.societe,
                 email = a.email,
                 adresse = a.adresse,
-                dateadhesion = a.dateadhesion
+                dateadhesion = a.dateadhesion,
+                status = a.status
             };
         }
 
         [HttpPut]
         public Adherent_DTO GetPutAdherent(Adherent_DTO a) 
         {
-            var a_metier = service.Update(new Adherents(a.id, a.nom, a.prenom,a.societe,a.email,a.adresse,a.dateadhesion));
+            var a_metier = service.Update(new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status));
             a.id = a_metier.id;
             a.nom = a_metier.nom;
             a.prenom = a_metier.prenom;
@@ -61,6 +63,7 @@ namespace CGCG.API.Controllers
             a.email = a_metier.email;
             a.adresse = a_metier.adresse;
             a.dateadhesion = a_metier.dateadhesion;
+            a.status = a_metier.status;
             return a;
            
         }
@@ -68,7 +71,7 @@ namespace CGCG.API.Controllers
         [HttpPost]
         public Adherent_DTO Insert(Adherent_DTO a)
         {
-            var a_metier = service.Insert(new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion));
+            var a_metier = service.Insert(new Adherents(a.id, a.nom, a.prenom, a.societe, a.email, a.adresse, a.dateadhesion, a.status));
             //Je récupère l'ID
             a.id = a_metier.id;
             //je renvoie l'objet DTO
