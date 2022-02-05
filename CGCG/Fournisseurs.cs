@@ -18,19 +18,22 @@ namespace CGCG
 
         public string addresse { get; set; }
 
+        public bool status { get; set; }
+
         public int id { get; set; }
 
-        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse)
+        public Fournisseurs(string Nom, string Prenom, string Societe, string Email, string Adresse, bool Status)
         {
             nom = Nom;
             prenom = Prenom;
             societe = Societe;
             email = Email;
             addresse = Adresse;
+            status = Status;
         }
 
-        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
-            :this(Nom, Prenom, Societe, Email, Adresse)
+        public Fournisseurs(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, bool Status)
+            :this(Nom, Prenom, Societe, Email, Adresse, Status)
         {
             id = ID;
         }

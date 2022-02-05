@@ -29,14 +29,15 @@ namespace CGCG.API.Controllers
                 prenom = f.prenom,
                 societe = f.societe,
                 email = f.email,
-                adresse = f.addresse
+                adresse = f.addresse,
+                status = f.status
             });
         }
 
         [HttpPost]
         public Fournisseurs_DTO Insert(Fournisseurs_DTO f)
         {
-            var f_metier = service.Insert(new Fournisseurs(f.id, f.nom, f.prenom, f.societe, f.email, f.adresse));
+            var f_metier = service.Insert(new Fournisseurs(f.id, f.nom, f.prenom, f.societe, f.email, f.adresse, f.status));
             //Je récupère l'ID
             f.id = f_metier.id;
             //je renvoie l'objet DTO
@@ -55,20 +56,22 @@ namespace CGCG.API.Controllers
                 prenom = f.prenom,
                 societe = f.societe,
                 email = f.email,
-                adresse = f.addresse
+                adresse = f.addresse,
+                status = f.status
             };
         }
 
         [HttpPut]
         public Fournisseurs_DTO GetPutFournisseur(Fournisseurs_DTO f)
         {
-            var f_metier = service.Update(new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.adresse));
+            var f_metier = service.Update(new Fournisseurs(f.id,f.nom,f.prenom,f.societe,f.email,f.adresse, f.status));
             f.id = f_metier.id;
             f.nom = f_metier.nom;
             f.prenom = f_metier.prenom;
             f.societe = f_metier.societe;
             f.email = f_metier.email;
             f.adresse = f_metier.addresse;
+            f.status = f_metier.status;
             return f;
         }
 

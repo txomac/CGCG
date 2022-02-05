@@ -19,19 +19,22 @@ namespace CGCG.DAL
 
         public string addresse { get; set; }
 
+        public bool status { get; set; }
+
         public int id { get; set; }
 
-        public Fournisseurs_DAL(string Nom, string Prenom, string Societe, string Email, string Adresse)
+        public Fournisseurs_DAL(string Nom, string Prenom, string Societe, string Email, string Adresse, bool Status)
         {
             nom = Nom;
             prenom = Prenom;
             societe = Societe;
             email = Email;
             addresse = Adresse;
+            status = Status;
         }
 
-        public Fournisseurs_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse)
-            : this(Nom, Prenom, Societe, Email, Adresse)
+        public Fournisseurs_DAL(int ID, string Nom, string Prenom, string Societe, string Email, string Adresse, bool Status)
+            : this(Nom, Prenom, Societe, Email, Adresse, Status)
         {
             id = ID;
         }
@@ -41,12 +44,13 @@ namespace CGCG.DAL
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
-                commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse)" + "values (@nom, @prenom, @societe, @email, @addresse)";
-                commande.Parameters.Add(new SqlParameter("@nom", nom));
-                commande.Parameters.Add(new SqlParameter("@prenom", prenom));
-                commande.Parameters.Add(new SqlParameter("@societe", societe));
-                commande.Parameters.Add(new SqlParameter("@email", email));
-                commande.Parameters.Add(new SqlParameter("@adresse", addresse));
+                commande.CommandText = "insert into fournisseurs(nom, prenom, societe, email, adresse, status)" + "values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @STATUS)";
+                commande.Parameters.Add(new SqlParameter("@NOM", nom));
+                commande.Parameters.Add(new SqlParameter("@PRENOM", prenom));
+                commande.Parameters.Add(new SqlParameter("@SOCIETE", societe));
+                commande.Parameters.Add(new SqlParameter("@EMAIL", email));
+                commande.Parameters.Add(new SqlParameter("@ADRESSE", addresse));
+                commande.Parameters.Add(new SqlParameter("@STATUS", status));
                 commande.ExecuteNonQuery();
             }
         }

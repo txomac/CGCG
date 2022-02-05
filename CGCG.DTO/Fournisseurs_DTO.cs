@@ -18,6 +18,8 @@ namespace CGCG.DTO
 
         public string adresse { get; set; }
 
+        public bool status { get; set; }
+
         public int id { get; set; }
     }
 }
