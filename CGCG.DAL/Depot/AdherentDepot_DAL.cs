@@ -69,9 +69,9 @@ namespace CGCG.DAL
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));
             commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.societe));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.email));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.adresse));
-            commande.Parameters.Add(new SqlParameter("@SOCIETE", adherent.dateadhesion));
+            commande.Parameters.Add(new SqlParameter("@EMAIL", adherent.email));
+            commande.Parameters.Add(new SqlParameter("@ADRESSE", adherent.adresse));
+            commande.Parameters.Add(new SqlParameter("@DATEADHESION", adherent.dateadhesion));
 
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
@@ -87,7 +87,7 @@ namespace CGCG.DAL
             CreerConnexionEtCommande();
 
             commande.CommandText = "update adherents set nom=@NOM, prenom=@PRENOM, societe=@SOCIETE, email=@EMAIL, adresse=@ADRESSE, dateadhesion=@DATEADHESION)"
-                                    + " where ID=@ID";
+                                    + " where id=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", adherent.id));
             commande.Parameters.Add(new SqlParameter("@NOM", adherent.nom));
             commande.Parameters.Add(new SqlParameter("@PRENOM", adherent.prenom));

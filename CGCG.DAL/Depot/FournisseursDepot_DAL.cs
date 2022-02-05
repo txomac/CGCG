@@ -109,7 +109,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "delete from fournisseurs where ID=@ID";
+            commande.CommandText = "delete from fournisseurs where id=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", fournisseurs.id));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();
 

@@ -43,7 +43,7 @@ namespace CGCG.API.Controllers
             return f;
         }
 
-        [HttpPost("{id}")]
+        [HttpGet("{id}")]
         public Fournisseurs_DTO GetFournisseursByID([FromRoute] int id)
         {
             var f = service.GetFournisseursByID(id);
