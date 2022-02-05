@@ -35,7 +35,7 @@ namespace CGCG.API.Controllers
             }
 
         [HttpGet("{id}")]
-        public Reference_DTO GetIDAdherent([FromRoute] int id)
+        public Reference_DTO GetIDReference([FromRoute] int id)
         {
             var r = service.GetReferencesByID(id);
             return new Reference_DTO()
@@ -49,7 +49,7 @@ namespace CGCG.API.Controllers
             };
         }
         [HttpPut]
-        public Reference_DTO GetPutAdherent(Reference_DTO r)
+        public Reference_DTO GetPutReference(Reference_DTO r)
         {
             var r_metier = service.Update(new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs));
             r.id = r_metier.id;
