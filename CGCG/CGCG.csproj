@@ -1,8 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="Microsoft.Build" Version="17.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CGCG.DAL\CGCG.DAL.csproj" />
+  </ItemGroup>
 
 </Project>

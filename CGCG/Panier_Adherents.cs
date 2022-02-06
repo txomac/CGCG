@@ -6,10 +6,24 @@ using System.Threading.Tasks;
 
 namespace CGCG
 {
-    class Panier_Adherents
+    public class Panier_Adherents
     {
-        public int ID_Adherents { get; set; }
+        public int id { get; set; }
 
-        public int ID_Panier_Global { get; set; }
+        public int id_adherents { get; set; }
+
+        public int id_panier_global { get; set; }
+
+        public Panier_Adherents(int ID_adherents, int ID_panier_global)
+        {
+            id_adherents = ID_adherents;
+            id_panier_global = ID_panier_global;
+        }
+
+        public Panier_Adherents(int ID, int ID_adherents, int ID_panier_global)
+            :this(ID_adherents, ID_panier_global)
+        {
+            id = ID;
+        }
     }
 }
