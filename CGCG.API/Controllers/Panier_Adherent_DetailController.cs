@@ -58,7 +58,7 @@ namespace CGCG.API.Controllers
         [HttpPost]
         public Panier_AdherentDetail_DTO Insert(Panier_AdherentDetail_DTO p)
         {
-            var p_metier = service.Insert(new Panier_Adherents_Details(p.id, p.id_panier_adherents, p.id_references));
+            var p_metier = service.Insert(new Panier_Adherents_Details(p.id,p.quantite, p.id_panier_adherents, p.id_references));
             //Je récupère l'ID
             p.id = p_metier.id;
             //je renvoie l'objet DTO
