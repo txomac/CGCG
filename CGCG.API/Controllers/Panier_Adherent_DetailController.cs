@@ -31,6 +31,17 @@ namespace CGCG.API.Controllers
             });
         }
 
+        [HttpPut]
+        public Panier_AdherentDetail_DTO GetPutPanierAdherentDetail(Panier_AdherentDetail_DTO p)
+        {
+            var p_metier = service.Update(new Panier_Adherents_Details(p.id, p.quantite, p.id_panier_adherents, p.id_references));
+            p.id = p_metier.id;
+            p.quantite = p_metier.quantite;
+            p.id_panier_adherents = p_metier.id_panier_adherents;
+            p.id_references = p_metier.id_references;
+            return p;
+        }
+
         [HttpPost]
         public Panier_AdherentDetail_DTO Insert(Panier_AdherentDetail_DTO p)
         {

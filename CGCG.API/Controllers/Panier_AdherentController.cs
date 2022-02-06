@@ -30,6 +30,28 @@ namespace CGCG.API.Controllers
             });
         }
 
+        [HttpGet("{id}")]
+        public Panier_adherent_DTO GetIDPanierAdherents([FromRoute] int id)
+        {
+            var p = service.GetPanierAdherentsByID(id);
+            return new Panier_adherent_DTO()
+            {
+                id = p.id,
+                id_adherents = p.id_adherents,
+                id_panier_global = p.id_panier_global
+            };
+        }
+
+        [HttpPut]
+        public Panier_adherent_DTO GetPutPanierGlobal(Panier_adherent_DTO p)
+        {
+            var p_metier = service.Update(new Panier_Adherents(p.id, p.id_adherents, p.id_panier_global));
+            p.id = p_metier.id;
+            p.id_adherents = p_metier.id_adherents;
+            p.id_panier_global = p_metier.id_panier_global;
+            return p;
+        }
+
         [HttpPost]
         public Panier_adherent_DTO Insert(Panier_adherent_DTO p)
         {
