@@ -85,6 +85,10 @@ namespace CGCG.DAL
 
             commande.CommandText = "update panier_global_detail set quantite=@QUANTITE, id_reference=@ID_REFERENCES, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
+            commande.Parameters.Add(new SqlParameter("@QUANTITE", panier.quantite));
+            commande.Parameters.Add(new SqlParameter("@ID_REFERENCES", panier.id_references));
+            commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
+
 
             var nbLignes = (int)commande.ExecuteNonQuery();
 
