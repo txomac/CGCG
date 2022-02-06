@@ -40,7 +40,8 @@ namespace CGCG.API
             services.AddSingleton(typeof(IPanier_FournisseursService), new Panier_FournisseursService());
             services.AddSingleton(typeof(IPanier_GlobalService), new Panier_GlobalService());
             services.AddSingleton(typeof(IAdherentsService), new AdherentsService());
-            
+            services.AddSingleton(typeof(IPanier_AdherentsService), new Panier_AdherentsService());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

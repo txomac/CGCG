@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, id_adherents, id_panier_global from panier_adherent";
+            commande.CommandText = "select id, id_adherent, id_panier_global from panier_adherents";
             var reader = commande.ExecuteReader();
 
             var listePanier = new List<Panier_Adherents_DAL>();
@@ -36,7 +36,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, id_adherent, id_panier_global from panier_adherent where ID=@ID";
+            commande.CommandText = "select id, id_adherent, id_panier_global from panier_adherents where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -62,7 +62,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_adherent(id_adherents, id_panier_global)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL); select scope_identity()";
+            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
 
@@ -79,8 +79,10 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_adherents set id_adherents=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
+            commande.CommandText = "update panier_adherents set id_adherent=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
+            commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
+            commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
 
             var nbLignes = (int)commande.ExecuteNonQuery();
 
