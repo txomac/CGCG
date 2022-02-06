@@ -41,6 +41,7 @@ namespace CGCG.API
             services.AddSingleton(typeof(IPanier_GlobalService), new Panier_GlobalService());
             services.AddSingleton(typeof(IAdherentsService), new AdherentsService());
             services.AddSingleton(typeof(IPanier_AdherentsService), new Panier_AdherentsService());
+            services.AddSingleton(typeof(IPanier_Adherents_DetailsService), new Panier_Adherents_DetailsService());
 
         }
 
