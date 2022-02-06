@@ -46,7 +46,7 @@ namespace CGCG.DAL
             if (reader.Read())
             {
                 p = new Panier_Fournisseurs_DAL(reader.GetInt32(0),
-                                                reader.GetFloat(1),
+                                                Convert.ToSingle(reader.GetDouble(1)),
                                                 reader.GetInt32(2),
                                                 reader.GetInt32(3));
             }
@@ -86,6 +86,9 @@ namespace CGCG.DAL
 
             commande.CommandText = "update panier_fournisseurs set puht=@PUHT, id_fournisseurs=@ID_FOURNISSEUR, id_panier_global_detail=@ID_PANIER_GLOBAL_DETAIL where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
+            commande.Parameters.Add(new SqlParameter("@PUHT", panier.puht));
+            commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEUR", panier.id_fournisseur));
+            commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL_DETAIL", panier.id_panier_global_detail));
 
             var nbLignes = (int)commande.ExecuteNonQuery();
 
