@@ -1,0 +1,30 @@
+﻿<Page x:Class="CGCG.WPF.Adherent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CGCG.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Adherent">
+
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Margin="47,91,0,0" Text="Ajouter un adherent" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox HorizontalAlignment="Left" Margin="57,137,0,0" Text="Nom :" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="128,141,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Name="add_name" Height="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="47,0,0,0" Text="Prenom :" TextWrapping="Wrap" VerticalAlignment="Center" Width="51" Height="18" RenderTransformOrigin="0.528,0.148"/>
+        <TextBlock HorizontalAlignment="Left" Margin="128,0,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center" Height="16" Name="add_prenom"/>
+        <TextBlock HorizontalAlignment="Left" Margin="128,240,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Name="add_societe"/>
+        <TextBox HorizontalAlignment="Left" Margin="47,240,0,0" Text="Societe" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="128,292,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="15" Name="add_email"/>
+        <TextBox HorizontalAlignment="Left" Margin="47,292,0,0" Text="Email" TextWrapping="Wrap" VerticalAlignment="Top" Width="51" Height="17"/>
+        <TextBlock HorizontalAlignment="Left" Margin="128,339,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Name="add_adresse"/>
+        <TextBox HorizontalAlignment="Left" Margin="47,339,0,0" Text="adresse" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Height="16"/>
+        <TextBox HorizontalAlignment="Left" Margin="40,379,0,0" Text="Date adhesion" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="167,379,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Name="add_date"/>
+        <TextBox HorizontalAlignment="Left" Margin="40,422,0,0" Text="Status" TextWrapping="Wrap" VerticalAlignment="Top" Width="74" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="177,422,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Name="add_status"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="247,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.842,0.919" Click="Button_Click"/>
+
+    </Grid>
+</Page>

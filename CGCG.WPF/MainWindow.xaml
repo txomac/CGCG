@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top">
+            <Button Content="Adherents" Click="Button_Click_adherent"/>
+            <Button Content="Fournisseurs" Click="Button_Click_fournisseur"/>
+        </StackPanel>
+        <Frame x:Name="Main" Margin="0,35,0,0"/>
+
 
     </Grid>
 </Window>

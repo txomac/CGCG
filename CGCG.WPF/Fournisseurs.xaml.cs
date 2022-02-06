@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace CGCG.WPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour Fournisseurs.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Fournisseurs : Page
     {
-        public MainWindow()
+        public Fournisseurs()
         {
             InitializeComponent();
-
-
-        }
-
-        private void Button_Click_adherent(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new Adherent();
-        }
-
-        private void Button_Click_fournisseur(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new Fournisseurs();
         }
     }
 }
