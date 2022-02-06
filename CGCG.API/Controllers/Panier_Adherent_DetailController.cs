@@ -31,6 +31,19 @@ namespace CGCG.API.Controllers
             });
         }
 
+        [HttpGet("{id}")]
+        public Panier_AdherentDetail_DTO GetIDPanierAdherentDetail([FromRoute] int id)
+        {
+            var p = service.GetPanierAdherentsDetailsByID(id);
+            return new Panier_AdherentDetail_DTO()
+            {
+                id = p.id,
+                quantite = p.quantite,
+                id_panier_adherents = p.quantite,
+                id_references = p.id_references
+            };
+        }
+
         [HttpPut]
         public Panier_AdherentDetail_DTO GetPutPanierAdherentDetail(Panier_AdherentDetail_DTO p)
         {
