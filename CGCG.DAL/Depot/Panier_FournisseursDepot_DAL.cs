@@ -37,7 +37,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, puht, id_fournisseur, id_panier_global_detail from panier_fournisseur where ID=@ID";
+            commande.CommandText = "select id, puht, id_fournisseurs, id_panier_global_detail from panier_fournisseurs where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -64,7 +64,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_fournisseur(puht, id_fournisseur, id_panier_global_detail)" + " values (@PUHT, @ID_FOURNISSEUR, @ID_PANIER_GLOBAL_DETAIL); select scope_identity()";
+            commande.CommandText = "insert into panier_fournisseurs(puht, id_fournisseurs, id_panier_global_detail)" + " values (@PUHT, @ID_FOURNISSEUR, @ID_PANIER_GLOBAL_DETAIL); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@PUHT", panier.puht));
             commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEUR", panier.id_fournisseur));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL_DETAIL", panier.id_panier_global_detail));
@@ -84,7 +84,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_fournisseurs set puht=@PUHT, id_fournisseur=@ID_FOURNISSEUR, id_panier_global_detail=@ID_PANIER_GLOBAL_DETAIL where ID=@ID";
+            commande.CommandText = "update panier_fournisseurs set puht=@PUHT, id_fournisseurs=@ID_FOURNISSEUR, id_panier_global_detail=@ID_PANIER_GLOBAL_DETAIL where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
 
             var nbLignes = (int)commande.ExecuteNonQuery();
@@ -107,7 +107,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "delete from panier_fournisseur where ID=@ID";
+            commande.CommandText = "delete from panier_fournisseurs where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
 
             var nbLignes = (int)commande.ExecuteNonQuery();

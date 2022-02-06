@@ -30,19 +30,19 @@ namespace CGCG.DAL
             id = ID;
         }
 
-        public void Insert(SqlConnection connexion)
+        internal void Insert(SqlConnection connexion)
         {
-            connexion.Open();
-
             using (var commande = new SqlCommand())
             {
                 commande.Connection = connexion;
+                commande.CommandText = "insert into panier_global_detail(id_references, quantite, id_panier_global)" + "values (@ID_REFERENCE, @QUANTITE, @ID_PANIER_GLOBAL)";
+                commande.Parameters.Add(new SqlParameter("@ID_REFERENCE", id_references));
+                commande.Parameters.Add(new SqlParameter("@QUANTITE", quantite));
+                commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", id_panier_global));
 
-                commande.CommandText = "insert into panier_global_detail (id, quantite, id_references, id_panier_global)";
-                id = (int)commande.ExecuteScalar();
+                commande.ExecuteNonQuery();
             }
 
-            connexion.Close();
         }
     }
 }

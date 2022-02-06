@@ -10,9 +10,9 @@ namespace CGCG.DTO
     {
         public int id { get; set; }
 
-        public int quantite { get; set; }
-
         public int id_references { get; set; }
+
+        public int quantite { get; set; }
 
         public int id_panier_global { get; set; }
     }

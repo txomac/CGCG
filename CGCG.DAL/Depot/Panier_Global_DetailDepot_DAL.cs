@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, quantite, id_references, id_panier_global from panier_global_detail";
+            commande.CommandText = "select id, quantite, id_reference, id_panier_global from panier_global_detail";
             var reader = commande.ExecuteReader();
 
             var listePanier = new List<Panier_Global_Detail_DAL>();
@@ -37,7 +37,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, quantite, id_references, id_panier_global from panier_global_detail where ID=@ID";
+            commande.CommandText = "select id, quantite, id_reference, id_panier_global from panier_global_detail where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -64,15 +64,15 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_global_detail(quantite, id_references, id_panier_global)" + " values (@QUANTITE, @ID_REFERENCES, @ID_PANIER_GLOBAL); select scope_identity()";
-            commande.Parameters.Add(new SqlParameter("@QUANTITE", panier.quantite));
+            commande.CommandText = "insert into panier_global_detail(id_reference, quantite , id_panier_global)" + " values (@ID_REFERENCES, @QUANTITE, @ID_PANIER_GLOBAL); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID_REFERENCES", panier.id_references));
+            commande.Parameters.Add(new SqlParameter("@QUANTITE", panier.quantite));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
-            panier.quantite = GetByID(ID).quantite;
             panier.id_references = GetByID(ID).id_references;
+            panier.quantite = GetByID(ID).quantite;
             panier.id_panier_global = GetByID(ID).id_panier_global;
             DetruireConnexionEtCommande();
 
@@ -83,7 +83,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_global_detail set quantite=@QUANTITE, id_references=@ID_REFERENCES, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
+            commande.CommandText = "update panier_global_detail set quantite=@QUANTITE, id_reference=@ID_REFERENCES, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
 
             var nbLignes = (int)commande.ExecuteNonQuery();

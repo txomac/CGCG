@@ -30,9 +30,11 @@ namespace CGCG
 
         public Panier_Global_Detail Insert(Panier_Global_Detail p)
         {
-            var panier = new Panier_Global_Detail_DAL(p.id, p.quantite, p.id_panier_global, p.id_references);
+            var panier = new Panier_Global_Detail_DAL(p.quantite, p.id_references, p.id_panier_global );
 
             depot.Insert(panier);
+
+            p.id = panier.id;
 
             return p;
         }

@@ -73,8 +73,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_global set semaine=@SEMAINE)"
-                                    + " where id=@ID";
+            commande.CommandText = "update panier_global set semaine=@SEMAINE where id=@ID;";
             commande.Parameters.Add(new SqlParameter("@ID", panierglobal.id));
             commande.Parameters.Add(new SqlParameter("@SEMAINE", panierglobal.semaine));
             var nombreDeLignesAffectees = (int)commande.ExecuteNonQuery();

@@ -24,7 +24,7 @@ namespace CGCG.DAL
       
         public void Insert(SqlConnection connexion)
         {
-            connexion.Open();
+            
 
             using (var commande = new SqlCommand())
             {
@@ -33,9 +33,10 @@ namespace CGCG.DAL
                 commande.CommandText = "insert into fournisseurs_references (id_fournisseurs, id_references)" + "values(@FOURNISSEUR, @REFERENCE)";
                 commande.Parameters.Add(new SqlParameter("@FOURNISSEUR", id_fournisseurs));
                 commande.Parameters.Add(new SqlParameter("@REFERENCE", id_references));
+                commande.ExecuteNonQuery();
             }
 
-            connexion.Close();
+          
         }
     }
 }

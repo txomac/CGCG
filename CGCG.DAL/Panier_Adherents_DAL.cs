@@ -37,11 +37,12 @@ namespace CGCG.DAL
             {
                 commande.Connection = connexion;
 
-                commande.CommandText = "insert into panier_adherents (id, id_adherents, id_panier_global)";
-                id = (int)commande.ExecuteScalar();
-            }
+                commande.CommandText = "insert into panier_adherents (id_adherents, id_panier_global)";
+                commande.Parameters.Add(new SqlParameter("@ID_ADHERENT", id_adherents));
+                commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", id_panier_global));
+                commande.ExecuteNonQuery();
 
-            connexion.Close();
+            }
 
         }
     }
