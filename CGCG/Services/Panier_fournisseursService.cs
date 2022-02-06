@@ -20,6 +20,14 @@ namespace CGCG
 
             return Panier_Fournisseurs;
         }
+
+        public Panier_Fournisseurs GetPanierFournisseursByID(int ID)
+        {
+            var p = depot.GetByID(ID);
+            var panier = new Panier_Fournisseurs(p.id, p.puht, p.id_fournisseur, p.id_panier_global_detail);
+
+            return panier;
+        }
         public Panier_Fournisseurs Insert(Panier_Fournisseurs pf)
         {
             var Panier_Fournisseurs = new Panier_Fournisseurs_DAL(pf.puht, pf.id_fournisseur, pf.id_panier_global_detail);
@@ -27,5 +35,15 @@ namespace CGCG
 
             return pf;
         }
+
+        public Panier_Fournisseurs Update(Panier_Fournisseurs p)
+        {
+            var panier = new Panier_Fournisseurs_DAL(p.id, p.puht, p.id_fournisseur, p.id_panier_global_detail);
+
+            depot.Update(panier);
+
+            return p;
+        }
     }
+
 }

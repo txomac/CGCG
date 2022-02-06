@@ -31,6 +31,30 @@ namespace CGCG.API.Controllers
             });
         }
 
+        [HttpGet("{id}")]
+        public Panier_Fournisseurs_DTO GetIDPanierFournisseur([FromRoute] int id)
+        {
+            var p = service.GetPanierFournisseursByID(id);
+            return new Panier_Fournisseurs_DTO()
+            {
+                id = p.id,
+                puht = p.puht,
+                id_fournisseur = p.id_fournisseur,
+                id_panier_global_detail = p.id_panier_global_detail
+            };
+        }
+
+        [HttpPut]
+        public Panier_Fournisseurs_DTO GetPutPanierGlobal(Panier_Fournisseurs_DTO p)
+        {
+            var p_metier = service.Update(new Panier_Fournisseurs(p.id, p.puht,p.id_fournisseur,p.id_panier_global_detail));
+            p.id = p_metier.id;
+            p.puht = p_metier.puht;
+            p.id_fournisseur = p_metier.id_fournisseur;
+            p.id_panier_global_detail = p_metier.id_panier_global_detail;
+            return p;
+        }
+
         [HttpPost]
         public Panier_Fournisseurs_DTO Insert(Panier_Fournisseurs_DTO p)
         {
