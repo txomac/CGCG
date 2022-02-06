@@ -51,5 +51,18 @@ namespace CGCG.API.Controllers
             //je renvoie l'objet DTO
             return p;
         }
+
+        [HttpGet("{id}")]
+        public Panier_Global_Details_DTO GetPanierGlobalDetailByID([FromRoute] int id)
+        {
+            var p = service.GetPanierGlobalDetailByID(id);
+            return new Panier_Global_Details_DTO()
+            {
+                id = p.id,
+                quantite = p.quantite,
+                id_panier_global = p.id_panier_global,
+                id_references = p.id_references
+            };
+        }
     }
 }
