@@ -19,7 +19,7 @@ namespace CGCG.API.Controllers
             service = srv;
         }
 
-        [HttpGet]
+        [HttpGet("All")]
         public IEnumerable<Panier_AdherentDetail_DTO> GetAllPanierAdherentDetail()
         {
             return service.GetAllPanierAdherentsDetails().Select(p => new Panier_AdherentDetail_DTO()

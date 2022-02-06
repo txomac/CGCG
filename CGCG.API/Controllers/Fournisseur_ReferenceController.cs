@@ -20,7 +20,7 @@ namespace CGCG.API.Controllers
                 service = srv;
             }
 
-            [HttpGet]
+            [HttpGet("All")]
             public IEnumerable<Fournisseur_Reference_DTO> GetAllReference()
             {
                 return service.GetAllFournisseursReferences().Select(fr => new Fournisseur_Reference_DTO()
