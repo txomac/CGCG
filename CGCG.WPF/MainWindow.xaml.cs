@@ -22,7 +22,11 @@ namespace CGCG.WPF
     {
         public MainWindow()
         {
+
+
             InitializeComponent();
+
+            
         }
     }
 }
