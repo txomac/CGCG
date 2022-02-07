@@ -22,19 +22,24 @@ namespace CGCG.WPF
     /// </summary>
     public partial class Adherent : Page
     {
-        public Client ClientApi{ get; set; }
 
 
         public Adherent()
         {
             InitializeComponent();
 
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //var adherent = new Adherents(add_name, add_prenom, add_societe, add_email, add_adresse, add_date, add_status);
-           // var client = ClientApi.AdherentPOSTAsync()
+            Client client = new Client("")
+            List<Adherent_DTO> adherents = await 
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
