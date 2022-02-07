@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Http;
 
 namespace CGCG.WPF
 {
@@ -31,14 +32,22 @@ namespace CGCG.WPF
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("")
-            List<Adherent_DTO> adherents = await 
+            Client client = new Client("https://localhost:44368", new HttpClient());
+            var adherents = await client.AllAdherentAsync();
+
+            grid_getall.ItemsSource = adherents;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void Button_Click_insert(object sender, RoutedEventArgs e)
+        {
+            Client client = new Client("https://localhost:44368", new HttpClient());
 
         }
     }

@@ -8,11 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Adherent">
 
-    <Grid Background="White">
+    <Grid Background="White" >
         <Button Content="GetAll" HorizontalAlignment="Left" Margin="29,29,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <Button Content="Modifier" HorizontalAlignment="Left" Margin="118,29,0,0" VerticalAlignment="Top"/>
-        <Button Content="Inserer" HorizontalAlignment="Left" Margin="226,29,0,0" VerticalAlignment="Top"/>
-        <DataGrid Margin="0,65,0,0" SelectionChanged="DataGrid_SelectionChanged" />
+        <Button Content="Inserer" HorizontalAlignment="Left" Margin="226,29,0,0" VerticalAlignment="Top" Click="Button_Click_insert"/>
+        <DataGrid Margin="0,65,0,0" SelectionChanged="DataGrid_SelectionChanged" Name="grid_getall"/>
+        <Grid Margin="0,65,0,0" x:Name="grid_insert"/>
 
     </Grid>
 </Page>
