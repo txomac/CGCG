@@ -19,7 +19,7 @@ namespace CGCG.API.Controllers
             service = srv;
         }
 
-        [HttpGet("All")]
+        [HttpGet("AllPanierGlobal")]
         public IEnumerable<Panier_Global_DTO> GetAllPanierGlobal()
         {
             return service.GetAllPanierGlobal().Select(p => new Panier_Global_DTO()
@@ -29,10 +29,10 @@ namespace CGCG.API.Controllers
             });
         }
 
-        [HttpGet("{id}")]
-        public Panier_Global_DTO GetIDPanierGlobal([FromRoute] int id)
+        [HttpGet("{idPanierGlobal}")]
+        public Panier_Global_DTO GetIDPanierGlobal([FromRoute] int idPanierGlobal)
         {
-            var p = service.GetPanierGlobalByID(id);
+            var p = service.GetPanierGlobalByID(idPanierGlobal);
             return new Panier_Global_DTO()
             {
                 id = p.id,

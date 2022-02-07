@@ -19,7 +19,7 @@ namespace CGCG.API.Controllers
             service = srv;
         }
 
-        [HttpGet("All")]
+        [HttpGet("AllAdherentDetail")]
         public IEnumerable<Panier_AdherentDetail_DTO> GetAllPanierAdherentDetail()
         {
             return service.GetAllPanierAdherentsDetails().Select(p => new Panier_AdherentDetail_DTO()
@@ -31,10 +31,10 @@ namespace CGCG.API.Controllers
             });
         }
 
-        [HttpGet("{id}")]
-        public Panier_AdherentDetail_DTO GetIDPanierAdherentDetail([FromRoute] int id)
+        [HttpGet("{idAdherentDetail}")]
+        public Panier_AdherentDetail_DTO GetIDPanierAdherentDetail([FromRoute] int idAdherentDetail)
         {
-            var p = service.GetPanierAdherentsDetailsByID(id);
+            var p = service.GetPanierAdherentsDetailsByID(idAdherentDetail);
             return new Panier_AdherentDetail_DTO()
             {
                 id = p.id,
