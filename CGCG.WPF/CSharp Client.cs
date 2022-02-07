@@ -433,18 +433,18 @@ namespace MyNamespace
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Fournisseur_Reference_DTO>> AllReferenceAsync()
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Fournisseur_Reference_DTO>> AllReferenceFournisseurAsync()
         {
-            return AllReferenceAsync(System.Threading.CancellationToken.None);
+            return AllReferenceFournisseurAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Fournisseur_Reference_DTO>> AllReferenceAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Fournisseur_Reference_DTO>> AllReferenceFournisseurAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Fournisseur_Reference/AllReference");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Fournisseur_Reference/AllReferenceFournisseur");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1256,15 +1256,15 @@ namespace MyNamespace
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Reference_DTO>> AllReference2Async()
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Reference_DTO>> AllReferenceAsync()
         {
-            return AllReference2Async(System.Threading.CancellationToken.None);
+            return AllReferenceAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Reference_DTO>> AllReference2Async(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Reference_DTO>> AllReferenceAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/Reference/AllReference");
