@@ -28,13 +28,17 @@ namespace CGCG.WPF
         public Adherent()
         {
             InitializeComponent();
+            insert_page.Visibility = Visibility.Hidden; 
+            grid_getall.Visibility = Visibility.Hidden;
 
 
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44368", new HttpClient());
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall.Visibility = Visibility.Visible;
+            Client client = new Client("https://localhost:44335", new HttpClient());
             var adherents = await client.AllAdherentAsync();
 
             grid_getall.ItemsSource = adherents;
@@ -45,10 +49,35 @@ namespace CGCG.WPF
 
         }
 
-        private void Button_Click_insert(object sender, RoutedEventArgs e)
+        private async void Button_Click_insert(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44368", new HttpClient());
+            insert_page.Visibility = Visibility.Visible;
+            grid_getall.Visibility = Visibility.Hidden;
+        }
 
+        private async void valide_insert_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Client client = new Client("https://localhost:44335", new HttpClient());
+            if (insert_nom != null && insert_prenom != null && insert_societe != null && insert_email != null && insert_status != null)
+            {
+                await client.AdherentPOSTAsync(new Adherent_DTO()
+                {
+                    Nom = insert_nom.Text,
+                    Prenom = insert_prenom.Text,
+                    Societe = insert_societe.Text,
+                    Adresse = insert_adresse.Text,
+                    Email = insert_email.Text,
+                    Status = (bool)insert_status.IsChecked,
+                    Dateadhesion = DateTime.Now
+                });
+
+                insert_page.Visibility = Visibility.Hidden;
+                grid_getall.Visibility = Visibility.Visible;
+                var adherents = await client.AllAdherentAsync();
+                grid_getall.ItemsSource = adherents;
+
+            }
         }
     }
 }
