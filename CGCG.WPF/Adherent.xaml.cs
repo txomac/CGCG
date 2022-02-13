@@ -49,7 +49,7 @@ namespace CGCG.WPF
 
         }
 
-        private async void Button_Click_insert(object sender, RoutedEventArgs e)
+        private void Button_Click_insert(object sender, RoutedEventArgs e)
         {
             insert_page.Visibility = Visibility.Visible;
             grid_getall.Visibility = Visibility.Hidden;
@@ -77,6 +77,32 @@ namespace CGCG.WPF
                 var adherents = await client.AllAdherentAsync();
                 grid_getall.ItemsSource = adherents;
 
+            }
+        }
+
+        private void Button_Click_modifier(object sender, RoutedEventArgs e)
+        {
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall.Visibility = Visibility.Visible;
+
+            if (grid_getall.SelectedItem != null)
+            {
+                Client client = new Client("https://localhost:44335", new HttpClient());
+                Adherent_DTO adherent = (Adherent_DTO)grid_getall.SelectedItem;
+                client.AdherentPUTAsync(adherent);
+            }
+        }
+
+        private void Button_Click_delete(object sender, RoutedEventArgs e)
+        {
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall.Visibility = Visibility.Visible;
+
+            if (grid_getall.SelectedItem != null)
+            {
+                Client client = new Client("https://localhost:44335", new HttpClient());
+                Adherent_DTO adherent = (Adherent_DTO)grid_getall.SelectedItem;
+                client.AdherentDELETEAsync(adherent.Id);
             }
         }
     }

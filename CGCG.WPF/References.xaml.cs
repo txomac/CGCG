@@ -34,10 +34,12 @@ namespace CGCG.WPF
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44368", new HttpClient());
-            var reference = await client.AllReferenceAsync();
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall.Visibility = Visibility.Visible;
+            Client client = new Client("https://localhost:44335", new HttpClient());
+            var adherents = await client.AllAdherentAsync();
 
-            grid_getall.ItemsSource = reference;
+            grid_getall.ItemsSource = adherents;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,8 +49,31 @@ namespace CGCG.WPF
 
         private void Button_Click_insert(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44368", new HttpClient());
+            insert_page.Visibility = Visibility.Visible;
+            grid_getall.Visibility = Visibility.Hidden;
+        }
 
+        private async void reference_insert_Click(object sender, RoutedEventArgs e)
+        {
+            Client client = new Client("https://localhost:44335", new HttpClient());
+            if (insert_reference != null && insert_libelle != null && insert_marque != null && insert_desactive != null)
+            {
+                await client.ReferencePOSTAsync.(new Reference_DTO()
+                {
+                    Reference = insert_reference.Text,
+                    Libelle = insert_libelle.Text,
+                    Marque = insert_marque.Text,
+                    Desactive= (bool)insert_desactive.IsChecked,
+                    Id_fournisseurs = insert_idfournisseur.Text
+                    
+                });
+
+                insert_page.Visibility = Visibility.Hidden;
+                grid_getall.Visibility = Visibility.Visible;
+                var adherents = await client.AllAdherentAsync();
+                grid_getall.ItemsSource = adherents;
+
+            }
         }
     }
 }

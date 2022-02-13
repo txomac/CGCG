@@ -8,12 +8,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Adherent">
 
-    <Grid Background="White" >
-        <Button Content="GetAll" HorizontalAlignment="Left" Margin="29,29,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="Modifier" HorizontalAlignment="Left" Margin="118,29,0,0" VerticalAlignment="Top"/>
+    <Grid x:Name="menu" Background="White" >
+        <Button Content="GetAll" HorizontalAlignment="Left" Margin="29,29,0,0" VerticalAlignment="Top" Click="Button_getall"/>
+        <Button Content="Modifier" HorizontalAlignment="Left" Margin="118,29,0,0" VerticalAlignment="Top" Click="Button_modifier"/>
         <Button Content="Inserer" HorizontalAlignment="Left" Margin="226,29,0,0" VerticalAlignment="Top" Click="Button_Click_insert"/>
+        <Button Content="Inserer" HorizontalAlignment="Left" Margin="311,29,0,0" VerticalAlignment="Top" Click="Button_Click_delete"/>
         <DataGrid Margin="0,65,0,0" SelectionChanged="DataGrid_SelectionChanged" Name="grid_getall"/>
-        <Grid Margin="0,65,0,0" x:Name="grid_insert"/>
+        <Grid x:Name="insert_page" Margin="0,65,0,0">
+            <TextBox HorizontalAlignment="Left" Margin="400,61,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="insert_reference"/>
+            <TextBox HorizontalAlignment="Left" Margin="400,169,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="insert_marque"/>
+            <TextBox HorizontalAlignment="Left" Margin="400,116,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="insert_libelle"/>
+            <TextBox HorizontalAlignment="Left" Margin="400,264,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="insert_idfournisseur"/>
+            <TextBlock HorizontalAlignment="Left" Margin="235,62,0,0" Text="reference" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="237,116,0,0" Text="libelle" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="239,171,0,0" Text="marque" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.613,0.494"/>
+            <TextBlock HorizontalAlignment="Left" Margin="239,223,0,0" Text="desactive" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.315,-1.228"/>
+            <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="400,223,0,0" VerticalAlignment="Top" x:Name="insert_desactive" RenderTransformOrigin="0.465,3.404"/>
+            <Button x:Name="valide_insert" Content="Validé reference" HorizontalAlignment="Left" Margin="326,328,0,0" VerticalAlignment="Top" Click="reference_insert_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="239,266,0,0" Text="id fournisseur" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.315,-1.228"/>
+        </Grid>
 
     </Grid>
 </Page>
