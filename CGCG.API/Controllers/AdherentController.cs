@@ -19,7 +19,7 @@ namespace CGCG.API.Controllers
             service = srv;
         }
 
-        [HttpGet("All")]
+        [HttpGet("AllAdherent")]
         public IEnumerable<Adherent_DTO> GetAllAdherent()
         {
             return service.GetAllAdherents().Select(a => new Adherent_DTO()
@@ -35,10 +35,10 @@ namespace CGCG.API.Controllers
             });
         }
 
-        [HttpGet("{id}")]
-        public Adherent_DTO GetIDAdherent([FromRoute] int id)
+        [HttpGet("{idAdherent}")]
+        public Adherent_DTO GetIDAdherent([FromRoute] int idAdherent)
         {
-            var a = service.GetAdherentsByID(id);
+            var a = service.GetAdherentsByID(idAdherent);
             return new Adherent_DTO()
             {
                 id = a.id,

@@ -36,5 +36,10 @@ namespace CGCG.WPF
         {
             Main.Content = new Fournisseurs();
         }
+
+        private void Button_Click_reference(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new References();
+        }
     }
 }

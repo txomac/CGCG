@@ -20,7 +20,7 @@ namespace CGCG.API.Controllers
                 service = srv;
             }
 
-            [HttpGet("All")]
+            [HttpGet("AllReference")]
             public IEnumerable<Reference_DTO> GetAllReference()
             {
                 return service.GetAllReferences().Select(r => new Reference_DTO()
@@ -34,10 +34,10 @@ namespace CGCG.API.Controllers
                 });
             }
 
-        [HttpGet("{id}")]
-        public Reference_DTO GetIDReference([FromRoute] int id)
+        [HttpGet("{idReference}")]
+        public Reference_DTO GetIDReference([FromRoute] int idReference)
         {
-            var r = service.GetReferencesByID(id);
+            var r = service.GetReferencesByID(idReference);
             return new Reference_DTO()
             {
                 id = r.id,
