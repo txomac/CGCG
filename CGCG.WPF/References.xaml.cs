@@ -71,7 +71,15 @@ namespace CGCG.WPF
 
         private void Button_Click_delete(object sender, RoutedEventArgs e)
         {
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall_reference.Visibility = Visibility.Visible;
 
+            if (grid_getall_reference.SelectedItem != null)
+            {
+                Client client = new Client("https://localhost:44335", new HttpClient());
+                Reference_DTO reference = (Reference_DTO)grid_getall_reference.SelectedItem;
+                client.FournisseursDELETEAsync(reference.Id);
+            }
         }
 
         private void reference_insert_Click(object sender, RoutedEventArgs e)
