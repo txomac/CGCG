@@ -7,13 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Net.Http;
 
 namespace CGCG.WPF
@@ -28,20 +21,10 @@ namespace CGCG.WPF
         public References()
         {
             InitializeComponent();
-
-
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
             insert_page.Visibility = Visibility.Hidden;
-            grid_getall.Visibility = Visibility.Visible;
-            Client client = new Client("https://localhost:44335", new HttpClient());
-            var adherents = await client.AllAdherentAsync();
+            grid_getall_reference.Visibility = Visibility.Hidden;
 
-            grid_getall.ItemsSource = adherents;
         }
-
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -50,10 +33,10 @@ namespace CGCG.WPF
         private void Button_Click_insert(object sender, RoutedEventArgs e)
         {
             insert_page.Visibility = Visibility.Visible;
-            grid_getall.Visibility = Visibility.Hidden;
+            grid_getall_reference   .Visibility = Visibility.Hidden;
         }
 
-        private async void reference_insert_Click(object sender, RoutedEventArgs e)
+       /* private async void reference_insert_Click(object sender, RoutedEventArgs e)
         {
             Client client = new Client("https://localhost:44335", new HttpClient());
             if (insert_reference != null && insert_libelle != null && insert_marque != null && insert_desactive != null)
@@ -69,11 +52,31 @@ namespace CGCG.WPF
                 });
 
                 insert_page.Visibility = Visibility.Hidden;
-                grid_getall.Visibility = Visibility.Visible;
+                grid_getall_reference.Visibility = Visibility.Visible;
                 var adherents = await client.AllAdherentAsync();
-                grid_getall.ItemsSource = adherents;
+                grid_getall_reference.ItemsSource = adherents;
 
             }
+        }*/
+
+        private async void Button_getall(object sender, RoutedEventArgs e)
+        {
+            insert_page.Visibility = Visibility.Hidden;
+            grid_getall_reference.Visibility = Visibility.Visible;
+            Client client = new Client("https://localhost:44335", new HttpClient());
+            var references = await client.AllReferenceAsync();
+
+            grid_getall_reference.ItemsSource = references;
+        }
+
+        private void Button_Click_delete(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void reference_insert_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -29,6 +29,10 @@ namespace CGCG.WPF
 
             grid_getall_fournisseur.ItemsSource = adherents;
         }
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 
         private void Button_Click_insert(object sender, RoutedEventArgs e)
         {
