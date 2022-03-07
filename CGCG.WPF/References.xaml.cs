@@ -45,7 +45,7 @@ namespace CGCG.WPF
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true && fournisseur != null)
             {
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
 
                 var referencesCSV = File.ReadAllText(openFileDialog.FileName).Split(new[] { '\r', '\n' });
 
@@ -79,7 +79,7 @@ namespace CGCG.WPF
 
         private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var clientApi = new Client("https://localhost:44362/", new HttpClient());
+            var clientApi = new Client("https://localhost:44335/", new HttpClient());
             var fournisseurs = await clientApi.AllFournisseursAsync();
 
             listeFournisseur.ItemsSource = fournisseurs;
