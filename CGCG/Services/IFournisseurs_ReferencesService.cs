@@ -13,7 +13,6 @@ namespace CGCG
         public Fournisseurs_References Insert(Fournisseurs_References fr);
         public Fournisseurs_References Update(Fournisseurs_References fr);
         public void Delete(Fournisseurs_References p);
-
         public void DeleteById(int id);
     }
 }

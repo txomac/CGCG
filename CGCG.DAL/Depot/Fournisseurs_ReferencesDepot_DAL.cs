@@ -70,7 +70,7 @@ namespace CGCG.DAL
         #endregion
 
         #region DeleteById
-        public override void DeleteById(int id)
+        public void DeleteById(int id)
         {
             CreerConnexionEtCommande();
 
