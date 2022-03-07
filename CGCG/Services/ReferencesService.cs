@@ -14,7 +14,7 @@ namespace CGCG
         public List<References> GetAllReferences()
         {
             var references = depot.GetAll()
-                .Select(r => new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs))
+                .Select(r => new References(r.id, r.reference, r.libelle, r.marque, r.desactive))
                 .ToList();
 
             return references;
@@ -23,14 +23,14 @@ namespace CGCG
         public References GetReferencesByID(int ID)
         {
             var r = depot.GetByID(ID);
-            var references = new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs);
+            var references = new References(r.id, r.reference, r.libelle, r.marque, r.desactive);
 
             return references;
         }
 
         public References Insert(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive);
 
             depot.Insert(references);
 
@@ -39,7 +39,7 @@ namespace CGCG
 
         public References Update(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive);
 
             depot.Update(references);
 
@@ -48,7 +48,7 @@ namespace CGCG
 
         public void Delete(References r)
         {
-            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.id_fournisseurs, r.desactive);
+            var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive);
 
             depot.Delete(references);
         }

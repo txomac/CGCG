@@ -14,7 +14,7 @@ namespace CGCG.DTO
 
         public bool desactive { get; set; }
 
-        public int id_fournisseurs { get; set; }
+        public int[] id_fournisseurs { get; set; }
 
     }
 }

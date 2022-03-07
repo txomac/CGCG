@@ -32,7 +32,6 @@ namespace CGCG.API.Controllers
                 libelle = r.libelle,
                 marque = r.marque,
                 desactive = r.desactive,
-                id_fournisseurs = r.id_fournisseurs,
             });
         }
 
@@ -47,19 +46,17 @@ namespace CGCG.API.Controllers
                 libelle = r.libelle,
                 marque = r.marque,
                 desactive = r.desactive,
-                id_fournisseurs = r.id_fournisseurs,
             };
         }
         [HttpPut]
         public Reference_DTO GetPutReference(Reference_DTO r)
         {
-            var r_metier = service.Update(new References(r.id, r.reference, r.libelle, r.marque, r.desactive, r.id_fournisseurs));
+            var r_metier = service.Update(new References(r.id, r.reference, r.libelle, r.marque, r.desactive));
             r.id = r_metier.id;
             r.reference = r_metier.reference;
             r.libelle = r_metier.libelle;
             r.marque = r_metier.marque;
             r.desactive = r_metier.desactive;
-            r.id_fournisseurs = r_metier.id_fournisseurs;
             return r;
 
         }

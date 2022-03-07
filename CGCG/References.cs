@@ -18,18 +18,16 @@ namespace CGCG
 
         public bool desactive { get; set; }
 
-        public int id_fournisseurs { get; set; }
-
-        public References(string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
+        public References(string Reference, string Libelle, string Marque, bool Desactive)
         {
             reference = Reference;
             libelle = Libelle;
             marque = Marque;
             desactive = Desactive;
-            id_fournisseurs = ID_Fournisseurs;
         }
-        public References(int ID, string Reference, string Libelle, string Marque, bool Desactive, int ID_Fournisseurs)
-           : this(Reference, Libelle, Marque, Desactive, ID_Fournisseurs)
+
+        public References(int ID, string Reference, string Libelle, string Marque, bool Desactive)
+           : this(Reference, Libelle, Marque, Desactive)
         {
             id = ID;
         }
