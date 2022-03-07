@@ -117,7 +117,7 @@ namespace CGCG.API.Controllers
                 }
                 else //si la référence n'existe pas en base de donnée
                 {
-                    var referenceTmp = service.Insert(new References(referenceCSV[0], referenceCSV[1], referenceCSV[2], System.Convert.ToBoolean(referenceCSV[3])));
+                    var referenceTmp = service.Insert(new References(referenceCSV[0], referenceCSV[1], referenceCSV[2], false));
                     Fournisseurs_ReferencesService.Insert(new Fournisseurs_References(idFournisseur, referenceTmp.id));
                 }
             }
