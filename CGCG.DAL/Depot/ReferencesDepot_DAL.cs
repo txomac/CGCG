@@ -170,5 +170,34 @@ namespace CGCG.DAL
 
             return listeReferences;
         }
+
+        public List<References_DAL> GetByReference(string reference)
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "select * from  [raminagrobis].[dbo].[references] where reference=@REFERENCE";
+            commande.Parameters.Add(new SqlParameter("@REFERENCE", reference));
+            var reader = commande.ExecuteReader();
+
+            var listReferences = new List<References_DAL>();
+
+            while (reader.Read())
+            {
+                var referenceTmp = new References_DAL(
+                                        reader.GetInt32(0),
+                                        reader.GetString(1),
+                                        reader.GetString(2),
+                                        reader.GetString(3),
+                                        reader.GetBoolean(4)
+                                        );
+
+                listReferences.Add(referenceTmp);
+            }
+
+
+            DetruireConnexionEtCommande();
+
+            return listReferences;
+        }
     }
 }

@@ -14,12 +14,12 @@ namespace CGCG.API.Controllers
     public class ReferenceController : ControllerBase
     {
         private IReferencesService service;
-        private IFournisseurs_ReferencesService fournisseurs_ReferencesService;
+        private IFournisseurs_ReferencesService Fournisseurs_ReferencesService;
 
         public ReferenceController(IReferencesService srv, IFournisseurs_ReferencesService srvFourRef)
         {
             service = srv;
-            fournisseurs_ReferencesService = srvFourRef;
+            Fournisseurs_ReferencesService = srvFourRef;
         }
 
         [HttpGet("AllReference")]
@@ -71,7 +71,7 @@ namespace CGCG.API.Controllers
 
             foreach (var id in r.id_fournisseurs)
             {
-                fournisseurs_ReferencesService.Insert(new Fournisseurs_References(id, r.id));
+                Fournisseurs_ReferencesService.Insert(new Fournisseurs_References(id, r.id));
             }
             return r;
         }
@@ -84,11 +84,26 @@ namespace CGCG.API.Controllers
             service.Delete(r_metier);
         }
 
+        [HttpGet("GetByReference/{reference}")]
+        public Reference_DTO GetByReference([FromRoute] string reference)
+        {
+            var r = service.GetByReference(reference);
 
-        /*[HttpPost("ImportCSV")]
+            return new Reference_DTO()
+            {
+                id = r[0].id,
+                reference = r[0].reference,
+                libelle = r[0].libelle,
+                marque = r[0].marque,
+                desactive = r[0].desactive
+            };
+        }
+
+
+        [HttpPost("ImportCSV")]
         public void ImportCSV(string[] referencesCSV, int idFournisseur)
         {
-            Fournisseurs_ReferencesService.Delete(idFournisseur); //on supprime toutes les anciennes références proposés
+            Fournisseurs_ReferencesService.DeleteById(idFournisseur); //on supprime toutes les anciennes références proposés
 
             for (var i = 1; i < referencesCSV.Length - 1; i++) // on itère sur chaque ligne
             {
@@ -98,14 +113,14 @@ namespace CGCG.API.Controllers
 
                 if (referenceBDD.Count > 0) //si la référence existe déjà en base de donnée
                 {
-                    serviceReferenceDetail.Insert(new Reference_details(idFournisseur, referenceBDD[0].ID));
+                    Fournisseurs_ReferencesService.Insert(new Fournisseurs_References(idFournisseur, referenceBDD[0].id));
                 }
                 else //si la référence n'existe pas en base de donnée
                 {
-                    var referenceTmp = service.Insert(new Reference(referenceCSV[0], referenceCSV[1], referenceCSV[2]));
-                    serviceReferenceDetail.Insert(new Reference_details(idFournisseur, referenceTmp.ID));
+                    var referenceTmp = service.Insert(new References(referenceCSV[0], referenceCSV[1], referenceCSV[2], System.Convert.ToBoolean(referenceCSV[3])));
+                    Fournisseurs_ReferencesService.Insert(new Fournisseurs_References(idFournisseur, referenceTmp.id));
                 }
             }
-        }*/
+        }
     }
 }

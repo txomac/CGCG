@@ -54,5 +54,15 @@ namespace CGCG
 
             depot.Delete(references);
         }
+
+        public List<References> GetByReference(string reference)
+        {
+            var r = depot.GetByReference(reference)
+                    .Select(r => new References(r.id, r.reference, r.libelle, r.marque, r.desactive))
+                    .ToList();
+
+            return r;
+
+        }
     }
 }
