@@ -19,15 +19,5 @@ namespace CGCG
             id_fournisseurs = ID_Fournisseurs;
             id_references = ID_References;
         }
-
-        public void Insert(Fournisseurs_DAL fournisseur, References_DAL reference)
-        {
-            Fournisseurs_References_DAL fournisseurDAL = new Fournisseurs_References_DAL(fournisseur.id, reference.id);
-
-            var depotFournisseur = new Fournisseurs_ReferencesDepot_DAL();
-
-            depotFournisseur.Insert(fournisseurDAL);
-
-        }
     }
 }

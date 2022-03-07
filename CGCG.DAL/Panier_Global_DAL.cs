@@ -24,18 +24,5 @@ namespace CGCG.DAL
             id = ID;
             semaine = Semaine;
         }
-
-        internal void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "insert into panier_global(semaine)"
-                                + " values (@SEMAINE)";
-                commande.Parameters.Add(new SqlParameter("@SEMAINE", semaine));
-                
-                commande.ExecuteNonQuery();
-            }
-        }
     }
 }

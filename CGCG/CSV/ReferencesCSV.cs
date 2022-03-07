@@ -25,9 +25,9 @@ namespace CGCG
                 libelle.Add(values[1]);
                 marque.Add(values[2]);
 
-                References referenceAdd = new References(referencelist[0], libelle[0], marque[0], false, fournisseur.id);
+                References referenceAdd = new References(referencelist[0], libelle[0], marque[0], false);
 
-                References_DAL referenceDAL = new References_DAL(referenceAdd.reference, referenceAdd.libelle, referenceAdd.marque, referenceAdd.id, referenceAdd.desactive);
+                References_DAL referenceDAL = new References_DAL(referenceAdd.id, referenceAdd.libelle, referenceAdd.marque, referenceAdd.reference, referenceAdd.desactive);
 
                 var depotReference = new ReferencesDepot_DAL();
 

@@ -32,19 +32,5 @@ namespace CGCG.DAL
         {
             id = ID;
         }
-
-        internal void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "insert into reference(reference, libelle, marque, desactive)" + "values (@REFERENCE, @LIBELLE, @MARQUE, @DESACTIVE)";
-                commande.Parameters.Add(new SqlParameter("@REFERENCE", reference));
-                commande.Parameters.Add(new SqlParameter("@LIBELLE", libelle));
-                commande.Parameters.Add(new SqlParameter("@MARQUE", marque));
-                commande.Parameters.Add(new SqlParameter("@DESACTIVE", desactive));
-                commande.ExecuteNonQuery();
-            }
-        }
     }
 }
