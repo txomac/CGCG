@@ -84,7 +84,7 @@ namespace CGCG.WPF
 
         private void reference_insert_Click(object sender, RoutedEventArgs e)
         {
-
+            Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)grid_getall_reference.SelectedItem;
 
         }
     }

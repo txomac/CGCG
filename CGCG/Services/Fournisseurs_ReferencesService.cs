@@ -52,5 +52,11 @@ namespace CGCG
 
             depot.Delete(fournisseurs_ref);
         }
+
+        public void DeleteById(int id)
+        {
+
+            depot.Delete(id);
+        }
     }
 }

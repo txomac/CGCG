@@ -82,8 +82,5 @@ namespace CGCG.API.Controllers
 
             service.Delete(f_metier);
         }
-
-
-
     }
 }
