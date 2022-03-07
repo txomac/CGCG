@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Net.Http;
+using System.IO;
+using Microsoft.Win32;
 
 namespace CGCG.WPF
 {
@@ -36,28 +38,21 @@ namespace CGCG.WPF
             grid_getall_reference   .Visibility = Visibility.Hidden;
         }
 
-       /* private async void reference_insert_Click(object sender, RoutedEventArgs e)
+        private async void reference_insert_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44335", new HttpClient());
-            if (insert_reference != null && insert_libelle != null && insert_marque != null && insert_desactive != null)
+            Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)listeFournisseur.SelectedItem;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true && fournisseur != null)
             {
-                await client.ReferencePOSTAsync.(new Reference_DTO()
-                {
-                    Reference = insert_reference.Text,
-                    Libelle = insert_libelle.Text,
-                    Marque = insert_marque.Text,
-                    Desactive= (bool)insert_desactive.IsChecked,
-                    Id_fournisseurs = insert_idfournisseur.Text
-                    
-                });
+                var clientApi = new Client("https://localhost:44362/", new HttpClient());
 
-                insert_page.Visibility = Visibility.Hidden;
-                grid_getall_reference.Visibility = Visibility.Visible;
-                var adherents = await client.AllAdherentAsync();
-                grid_getall_reference.ItemsSource = adherents;
+                var referencesCSV = File.ReadAllText(openFileDialog.FileName).Split(new[] { '\r', '\n' });
 
+                await clientApi.ImportCSVAsync(fournisseur.Id, referencesCSV);
             }
-        }*/
+            else if (fournisseur == null) MessageBox.Show("Vous devez choisir un fournisseur.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
         private async void Button_getall(object sender, RoutedEventArgs e)
         {
@@ -82,10 +77,12 @@ namespace CGCG.WPF
             }
         }
 
-        private void reference_insert_Click(object sender, RoutedEventArgs e)
+        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)grid_getall_reference.SelectedItem;
+            var clientApi = new Client("https://localhost:44362/", new HttpClient());
+            var fournisseurs = await clientApi.AllFournisseursAsync();
 
+            listeFournisseur.ItemsSource = fournisseurs;
         }
     }
 }
