@@ -23,6 +23,7 @@ namespace CGCG.WPF
         public References()
         {
             InitializeComponent();
+            listfournisseurs();
             insert_page.Visibility = Visibility.Hidden;
             grid_getall_reference.Visibility = Visibility.Hidden;
 
@@ -77,12 +78,17 @@ namespace CGCG.WPF
             }
         }
 
-        private async void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void listfournisseurs()
         {
             var clientApi = new Client("https://localhost:44335/", new HttpClient());
             var fournisseurs = await clientApi.AllFournisseursAsync();
 
             listeFournisseur.ItemsSource = fournisseurs;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
