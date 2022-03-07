@@ -1,4 +1,4 @@
-﻿using MyNamespace;
+﻿using CgCgApI;
 using CGCG;
 using System.Windows;
 using System.Windows.Controls;

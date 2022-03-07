@@ -1,4 +1,4 @@
-﻿using MyNamespace;
+﻿using CgCgApI;
 using CGCG;
 using System;
 using System.Collections.Generic;
