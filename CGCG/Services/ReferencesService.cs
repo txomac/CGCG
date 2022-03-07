@@ -33,6 +33,7 @@ namespace CGCG
             var references = new References_DAL(r.id, r.reference, r.libelle, r.marque, r.desactive);
 
             depot.Insert(references);
+            r.id = references.id;
 
             return r;
         }
