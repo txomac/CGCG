@@ -69,5 +69,18 @@ namespace CGCG.DAL
         }
         #endregion
 
+        #region DeleteById
+        public void DeleteById(int id)
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "delete from fournisseurs_references where id_fournisseurs=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", id));
+
+            DetruireConnexionEtCommande();
+
+        }
+        #endregion
+
     }
 }

@@ -29,19 +29,5 @@ namespace CGCG.DAL
         {
             id = ID;
         }
-
-        public void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-
-                commande.CommandText = "insert into panier_fournisseur(puht, id_fournisseur, id_panier_global_detail)" + "values (@PUHT, @ID_FOURNISSEUR, @ID_PANIER_GLOBAL_DETAIL)";
-                commande.Parameters.Add(new SqlParameter("@PUHT", puht));
-                commande.Parameters.Add(new SqlParameter("@ID_FOURNISSEUR", id_fournisseur));
-                commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL_DETAIL", id_panier_global_detail));
-                commande.ExecuteNonQuery();
-            }
-        }
     }
 }

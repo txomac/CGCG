@@ -1,4 +1,4 @@
-﻿using MyNamespace;
+﻿using CgCgApI;
 using CGCG;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,9 +25,13 @@ namespace CGCG.WPF
             insert_page.Visibility = Visibility.Hidden;
             grid_getall_fournisseur.Visibility = Visibility.Visible;
             Client client = new Client("https://localhost:44335", new HttpClient());
-            var adherents = await client.AllAdherentAsync();
+            var fournisseur = await client.AllFournisseursAsync();
 
-            grid_getall_fournisseur.ItemsSource = adherents;
+            grid_getall_fournisseur.ItemsSource = fournisseur;
+        }
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void Button_Click_insert(object sender, RoutedEventArgs e)

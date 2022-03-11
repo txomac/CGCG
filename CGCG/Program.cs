@@ -7,7 +7,7 @@ namespace CGCG
     {
         public static void Main(string[] args)
         {
-            #region AjoutDansFournisseurReference
+/*            #region AjoutDansFournisseurReference
             FournisseursDepot_DAL depot = new FournisseursDepot_DAL();
             Fournisseurs_DAL fournisseur1 = depot.GetByID(1);
 
@@ -18,8 +18,7 @@ namespace CGCG
 
             fourrefe.Insert(fournisseur1, reference1);
             #endregion
-
-
+*/
         }
     }
 }

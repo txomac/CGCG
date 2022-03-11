@@ -41,22 +41,5 @@ namespace CGCG.DAL
         {
             id = ID;
         }
-
-        internal void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "insert into adherents(nom, prenom, societe, email, adresse, dateadhesion, status)" + "values (@NOM, @PRENOM, @SOCIETE, @EMAIL, @ADRESSE, @DATEADHESION, @STATUS)";
-                commande.Parameters.Add(new SqlParameter("@NOM", nom));
-                commande.Parameters.Add(new SqlParameter("@PRENOM", prenom));
-                commande.Parameters.Add(new SqlParameter("@SOCIETE", societe));
-                commande.Parameters.Add(new SqlParameter("@EMAIL", email));
-                commande.Parameters.Add(new SqlParameter("@ADRESSE", addresse));
-                commande.Parameters.Add(new SqlParameter("@DATEADHESION", dateadhesion));
-                commande.Parameters.Add(new SqlParameter("@STATUS", status));
-                commande.ExecuteNonQuery();
-            }
-        }
     }
 }

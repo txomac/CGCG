@@ -29,18 +29,5 @@ namespace CGCG.DAL
         {
             id = ID;
         }
-
-        internal void Insert(SqlConnection connexion)
-        {
-            using (var commande = new SqlCommand())
-            {
-                commande.Connection = connexion;
-                commande.CommandText = "insert into panier_adherent_detail(quantite)"
-                                + " values (@QUANTITE)";
-                commande.Parameters.Add(new SqlParameter("@QUANTITE", quantite));
-
-                commande.ExecuteNonQuery();
-            }
-        }
     }
 }
