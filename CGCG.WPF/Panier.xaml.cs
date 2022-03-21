@@ -16,6 +16,7 @@ using CgCgApI;
 using System.Net.Http;
 using Microsoft.Win32;
 using System.IO;
+using System.Globalization;
 
 namespace CGCG.WPF
 {
@@ -41,6 +42,14 @@ namespace CGCG.WPF
             listAdherents.ItemsSource = adherents;
         }
 
+        private async void fetchPanierGlobal()
+        {
+            var clientApi = new Client("https://localhost:44362/", new HttpClient());
+            var panier_global = await clientApi.AllPanierGlobalAsync();
+
+            listPanierGlobal.ItemsSource = panier_global;
+        }
+
         private async void fetchFournisseurs()
         {
             var clientApi = new Client("https://localhost:44362/", new HttpClient());
@@ -62,16 +71,17 @@ namespace CGCG.WPF
         private async void btnOpenFile_Click(object sender, RoutedEventArgs e)
         {
             Adherent_DTO adherent = (Adherent_DTO)listAdherents.SelectedItem;
+            Panier_Global_DTO panier_Global = (Panier_Global_DTO)listPanierGlobal.SelectedItem;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true && adherent != null)
             {
                 var clientApi = new Client("https://localhost:44362/", new HttpClient());
 
-                var panierAdherent = await clientApi.AllPanierAdherentAsync(new Panier_adherent_DTO()
+                var panierAdherent = await clientApi.Pa(new Panier_adherent_DTO()
                 {
-                    Semaine = (getWeek(DateTime.Now) + 1).ToString(),
-                    ID_ADHERENT = adherent.Id,
+                    id_adherents = adherent.Id,
+                    id_panier_global = panier_Global.Id,
                 });
 
                 var panierCSV = File.ReadAllText(openFileDialog.FileName).Split(new[] { '\r', '\n' });
@@ -84,11 +94,11 @@ namespace CGCG.WPF
                     {
                         var reference = await clientApi.GetByReferenceAsync(panierAdherentDetail[0]);
 
-                        await clientApi.PanierAdherentDetailPOSTAsync(new Panier_Adherent_Details_DTO()
+                        await clientApi.(new Panier_AdherentDetail_DTO()
                         {
-                            ID_REFERENCE = reference.Id,
+                            Id_references = reference.Id,
                             Quantite = Int32.Parse(panierAdherentDetail[1]),
-                            ID_PANIER_ADHERENT = panierAdherent.Id,
+                            Id_panier_adherents = panierAdherent.Id,
                         });
                     }
                     catch (Exception ex)
@@ -106,18 +116,18 @@ namespace CGCG.WPF
         {
             var semaine = (getWeek(DateTime.Now) + 1).ToString();
             var clientApi = new Client("https://localhost:44362/", new HttpClient());
-            var panierGLobal = await clientApi.PanierGlobalPOSTAsync(new Panier_Global_DTO()
+            var panierGLobal = await clientApi.AllPanierGlobalAsync(new Panier_Global_DTO()
             {
-                Semaine = semaine
+                Semaine = semaine,
             });
 
             var panierAdherents = await clientApi.AllFournisseursAsync();
-            var panierAdherentsDetail = await clientApi.AllPaniersAdherentAsync();
+            var panierAdherentsDetail = await clientApi.AllPanierAdherentAsync();
             var panierAdherentsFiltered = panierAdherents.Where(panier => panier.Semaine == semaine).ToList();
 
-            List<Panier_Adherent_Details_DTO> panierAdherentsDetailFiltered = new List<Panier_Adherent_Details_DTO>();
+            List<Panier_AdherentDetail_DTO> panierAdherentsDetailFiltered = new List<Panier_AdherentDetail_DTO>();
 
-            foreach (Panier_Adherent_DTO panierAdherent in panierAdherentsFiltered)
+            foreach (Panier_adherent_DTO panierAdherent in panierAdherentsFiltered)
             {
                 panierAdherentsDetailFiltered.AddRange(panierAdherentsDetail.Where(panier => panier.ID_PANIER_ADHERENT == panierAdherent.Id).ToList());
             }
