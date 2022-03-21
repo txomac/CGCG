@@ -14,7 +14,7 @@ namespace CGCG
         public List<Panier_Adherents> GetAllPanierAdherents()
         {
             var panier = depot.GetAll()
-                .Select(p => new Panier_Adherents(p.id, p.id_adherents, p.id_panier_global))
+                .Select(p => new Panier_Adherents(p.id, p.id_adherents, p.id_panier_global, p.semaine))
                 .ToList();
 
             return panier;
@@ -23,14 +23,14 @@ namespace CGCG
         public Panier_Adherents GetPanierAdherentsByID(int ID)
         {
             var p = depot.GetByID(ID);
-            var panier = new Panier_Adherents(p.id, p.id_adherents, p.id_panier_global);
+            var panier = new Panier_Adherents(p.id, p.id_adherents, p.id_panier_global, p.semaine);
 
             return panier;
         }
 
         public Panier_Adherents Insert(Panier_Adherents p)
         {
-            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global);
+            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global,p.semaine);
 
             depot.Insert(panier);
 
@@ -39,7 +39,7 @@ namespace CGCG
 
         public Panier_Adherents Update(Panier_Adherents p)
         {
-            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global);
+            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global, p.semaine);
 
             depot.Update(panier);
 
@@ -48,7 +48,7 @@ namespace CGCG
 
         public void Delete(Panier_Adherents p)
         {
-            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global);
+            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global, p.semaine);
 
             depot.Delete(panier);
         }

@@ -13,7 +13,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, id_adherent, id_panier_global from panier_adherents";
+            commande.CommandText = "select id, id_adherent, id_panier_global, semaine from panier_adherents";
             var reader = commande.ExecuteReader();
 
             var listePanier = new List<Panier_Adherents_DAL>();
@@ -22,7 +22,8 @@ namespace CGCG.DAL
             {
                 var p = new Panier_Adherents_DAL(reader.GetInt32(0),
                                                     reader.GetInt32(1),
-                                                    reader.GetInt32(2));
+                                                    reader.GetInt32(2),
+                                                    reader.GetInt32(3));
 
                 listePanier.Add(p);
             }
@@ -36,7 +37,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "select id, id_adherent, id_panier_global from panier_adherents where ID=@ID";
+            commande.CommandText = "select id, id_adherent, id_panier_global, semaine from panier_adherents where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", ID));
             var reader = commande.ExecuteReader();
 
@@ -46,7 +47,8 @@ namespace CGCG.DAL
             {
                 p = new Panier_Adherents_DAL(reader.GetInt32(0),
                                                 reader.GetInt32(1),
-                                                reader.GetInt32(2));
+                                                reader.GetInt32(2),
+                                                reader.GetInt32(3));
             }
             else
             {
@@ -62,14 +64,16 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL); select scope_identity()";
+            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global, semaine)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL, @SEMAINE); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
+            commande.Parameters.Add(new SqlParameter("@SEMAINE", panier.semaine));
 
             var ID = Convert.ToInt32((decimal)commande.ExecuteScalar());
 
             panier.id_adherents = GetByID(ID).id_adherents;
             panier.id_panier_global = GetByID(ID).id_panier_global;
+            panier.semaine = GetByID(ID).semaine;
             DetruireConnexionEtCommande();
 
             return panier;
@@ -79,10 +83,12 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_adherents set id_adherent=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL where ID=@ID";
+            commande.CommandText = "update panier_adherents set id_adherent=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL, semain=@SEMAINE where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
+            commande.Parameters.Add(new SqlParameter("@SEMAINE", panier.semaine));
+
 
             var nbLignes = (int)commande.ExecuteNonQuery();
 
@@ -93,7 +99,7 @@ namespace CGCG.DAL
 
             panier.id_adherents = GetByID(panier.id).id_adherents;
             panier.id_panier_global = GetByID(panier.id).id_panier_global;
-
+            panier.semaine = GetByID(panier.id).semaine;
             DetruireConnexionEtCommande();
 
             return panier;
