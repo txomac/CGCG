@@ -118,15 +118,15 @@ namespace CGCG.WPF
                     Semaine = semaine
                 });
 
-                var panierAdherents = await clientApi.AllFournisseursAsync();
-                var panierAdherentsDetail = await clientApi.AllPanierAdherentAsync();
-                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.semaine == semaine).ToList();
+                var panierAdherents = await clientApi.AllPanierAdherentAsync();
+                var panierAdherentsDetail = await clientApi.AllAdherentDetailAsync();
+                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.Semaine == semaine).ToList();
 
                 List<Panier_AdherentDetail_DTO> panierAdherentsDetailFiltered = new List<Panier_AdherentDetail_DTO>();
 
                 foreach (Panier_adherent_DTO panierAdherent in panierAdherentsFiltered)
                 {
-                    panierAdherentsDetailFiltered.AddRange(panierAdherentsDetail.Where(panier => panier.ID_PANIER_ADHERENT == panierAdherent.Id).ToList());
+                    panierAdherentsDetailFiltered.AddRange(panierAdherentsDetail.Where(panier => panier.Id_panier_adherents == panierAdherent.Id).ToList());
                 }
 
                 //pour additioner les quantités
@@ -208,7 +208,8 @@ namespace CGCG.WPF
             private async void btnUploadFounirsseurCart(object sender, RoutedEventArgs e)
             {
                 var clientApi = new Client("https://localhost:44362/", new HttpClient());
-                Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)listFournisseurs.SelectedItem;
+                var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
+            Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)listFournisseurs.SelectedItem;
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (openFileDialog.ShowDialog() == true && fournisseur != null)
@@ -233,7 +234,7 @@ namespace CGCG.WPF
                             var reference = await clientApi.GetByReferenceAsync(offre[0]);
                             var reference_PanierGlobalDetail = listPanierGlobalDetail.FirstOrDefault(referenceDetail => referenceDetail.Id_references == reference.Id);
 
-                            await clientApi.(new Panier_Fournisseurs_DTO()
+                            await clientApipanier.FournisseursPOSTAsync(new Panier_Fournisseurs_DTO()
                             {
                                 Puht = float.Parse(offre[2], NumberStyles.Any, ci),
                                 Id_fournisseur = fournisseur.Id,
