@@ -11,7 +11,7 @@
             <Button Content="Adherents" Click="Button_Click_adherent"/>
             <Button Content="Fournisseurs" Click="Button_Click_fournisseur"/>
             <Button Content="Références" Click="Button_Click_reference"/>
-           <!--<Button Content="Panier Global" Click="Button_Click_panier_global"/> -->
+            <Button Content="Gérer les Panier" Click="Button_Click_panier_global"/>
 
         </StackPanel>
         <Frame x:Name="Main" Margin="0,35,0,0"/>
