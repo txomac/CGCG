@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,9 +28,9 @@ namespace CGCG
                 ReferencesDepot_DAL referenceDepot = new ReferencesDepot_DAL();
                 Panier_AdherentsDepot_DAL panier_adherent = new Panier_AdherentsDepot_DAL();
                 var id_panier_global = panier_global.id;
+                var semaine 
 
-
-                Panier_Adherents_DAL panier_adherentDal = new Panier_Adherents_DAL(adherent.id, id_panier_global);
+                Panier_Adherents_DAL panier_adherentDal = new Panier_Adherents_DAL(adherent.id, id_panier_global, Semaine);
 
                 panier_adherent.Insert(panier_adherentDal);
 
@@ -42,3 +42,4 @@ namespace CGCG
         }
     }
 }
+*/

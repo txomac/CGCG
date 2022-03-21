@@ -44,7 +44,7 @@ namespace CGCG.WPF
 
         private void Button_Click_panier_global(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Panier_Global();
+            Main.Content = new panier();
         }
     }
 }
