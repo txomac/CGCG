@@ -57,5 +57,14 @@ namespace CGCG
         {
             depot.DeleteById(ID);
         }
+
+        public List<Fournisseurs_References> GetByIDFournisseur(int ID)
+        {
+            var reference_details = depot.GetByIDFournisseur(ID)
+                    .Select(f => new Fournisseurs_References(f.id_fournisseurs, f.id_references))
+                    .ToList();
+
+            return reference_details;
+        }
     }
 }

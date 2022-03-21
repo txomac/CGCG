@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -106,7 +107,7 @@ namespace CGCG.WPF
 
             private async void btnDownloadGlobalCart(object sender, RoutedEventArgs e)
             {
-                var semaine = (getWeek(DateTime.Now) + 1).ToString();
+                var semaine = (getWeek(DateTime.Now) + 1);
                 var clientApi = new Client("https://localhost:44362/", new HttpClient());
                 var panierGLobal = await clientApi.PanierGlobalPOSTAsync(new Panier_Global_DTO()
                 {
@@ -115,7 +116,7 @@ namespace CGCG.WPF
 
                 var panierAdherents = await clientApi.AllFournisseursAsync();
                 var panierAdherentsDetail = await clientApi.AllPanierAdherentAsync();
-                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.Semaine == semaine).ToList();
+                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.s == semaine).ToList();
 
                 List<Panier_AdherentDetail_DTO> panierAdherentsDetailFiltered = new List<Panier_AdherentDetail_DTO>();
 
@@ -187,10 +188,10 @@ namespace CGCG.WPF
                     foreach (Panier_Global_Details_DTO referencePanier in panierGlobalDetail)
                     {
                         //si la reference du panier global est proposé par le fournisseur sélectionné
-                        if (listReferenceDetail.FirstOrDefault(referenceDetail => referenceDetail.ID_REFERENCE == referencePanier.ID_REFERENCE) != null)
+                        if (listReferenceDetail.FirstOrDefault(referenceDetail => referenceDetail.ID_REFERENCE == referencePanier.Id_references) != null)
                         {
-                            var reference = await clientApi.ReferenceGETAsync(referencePanier.ID_REFERENCE);
-                            sw.Write($"{reference.Reference};{referencePanier.QuantitE_GLOBAL};0\n");
+                            var reference = await clientApi.ReferenceGETAsync(referencePanier.Id_references);
+                            sw.Write($"{reference.Reference};{referencePanier.Quantite};0\n");
                         }
                     }
                     sw.Close();

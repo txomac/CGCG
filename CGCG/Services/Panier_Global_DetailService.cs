@@ -54,5 +54,14 @@ namespace CGCG
 
             depot.Delete(panier);
         }
+
+        public List<Panier_Global_Detail> GetByIDPanierGlobal(int ID)
+        {
+            var panier_global_details = depot.GetByIDPanierGlobal(ID)
+                    .Select(f => new Panier_Global_Detail(f.id, f.quantite, f.id_references, f.id_panier_global))
+                    .ToList();
+
+            return panier_global_details;
+        }
     }
 }

@@ -31,7 +31,16 @@ namespace CGCG.API.Controllers
                 });
             }
 
-            [HttpPost]
+        [HttpGet("GetFournisseurReferenceByFournisseur")]
+        public IEnumerable<Fournisseur_Reference_DTO> GetFournisseurReferenceByFournisseur(int ID)
+        {
+            return service.GetByIDFournisseur(ID).Select(fr => new Fournisseur_Reference_DTO()
+            {
+                id_fournisseurs = fr.id_fournisseurs,
+                id_references = fr.id_references
+            });
+        }
+        [HttpPost]
         public Fournisseur_Reference_DTO Insert(Fournisseur_Reference_DTO fr)
         {
             var fr_metier = service.Insert(new Fournisseurs_References (fr.id_fournisseurs, fr.id_references));

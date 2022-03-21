@@ -141,5 +141,32 @@ namespace CGCG.DAL
 
             return listeQuantite;
         }
+
+        public List<Panier_Global_Detail_DAL> GetByIDPanierGlobal(int ID)
+        {
+            CreerConnexionEtCommande();
+
+            commande.CommandText = "select * from panier_global_detail where id_panier_global=@ID";
+            commande.Parameters.Add(new SqlParameter("@ID", ID));
+            var reader = commande.ExecuteReader();
+
+            var listepanier_global_details = new List<Panier_Global_Detail_DAL>();
+
+            while (reader.Read())
+            {
+                var panier_global_detailsTmp = new Panier_Global_Detail_DAL(
+                                       reader.GetInt32(0),
+                                        reader.GetInt32(2),
+                                        reader.GetInt32(1),
+                                        reader.GetInt32(3)
+                                        );
+
+                listepanier_global_details.Add(panier_global_detailsTmp);
+            }
+            DetruireConnexionEtCommande();
+
+            return listepanier_global_details;
+        }
+
     }
 }
