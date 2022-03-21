@@ -70,10 +70,12 @@ namespace CGCG.WPF
                 if (openFileDialog.ShowDialog() == true && adherent != null)
                 {
                     var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                    var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
 
-                    var panierAdherent = await clientApi.PanierAdherentPOSTAsync(new Panier_adherent_DTO()
+
+                    var panierAdherent = await clientApipanier.AdherentPOSTAsync(new Panier_adherent_DTO()
                     {
-                        Semaine = (getWeek(DateTime.Now) + 1).ToString(),
+                        Semaine = (getWeek(DateTime.Now) + 1),
                         Id_adherents = adherent.Id,
                     });
 
@@ -87,7 +89,7 @@ namespace CGCG.WPF
                         {
                             var reference = await clientApi.GetByReferenceAsync(panierAdherentDetail[0]);
 
-                            await clientApi.PanierAdherentDetailPOSTAsync(new Panier_AdherentDetail_DTO()
+                            await clientApipanier.DetailPOSTAsync(new Panier_AdherentDetail_DTO()
                             {
                                 Id_references = reference.Id,
                                 Quantite = Int32.Parse(panierAdherentDetail[1]),
@@ -109,14 +111,16 @@ namespace CGCG.WPF
             {
                 var semaine = (getWeek(DateTime.Now) + 1);
                 var clientApi = new Client("https://localhost:44362/", new HttpClient());
-                var panierGLobal = await clientApi.PanierGlobalPOSTAsync(new Panier_Global_DTO()
+                var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
+
+            var panierGLobal = await clientApipanier.GlobalPOSTAsync(new Panier_Global_DTO()
                 {
                     Semaine = semaine
                 });
 
                 var panierAdherents = await clientApi.AllFournisseursAsync();
                 var panierAdherentsDetail = await clientApi.AllPanierAdherentAsync();
-                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.s == semaine).ToList();
+                var panierAdherentsFiltered = panierAdherents.Where(panier => panier.semaine == semaine).ToList();
 
                 List<Panier_AdherentDetail_DTO> panierAdherentsDetailFiltered = new List<Panier_AdherentDetail_DTO>();
 
@@ -136,7 +140,7 @@ namespace CGCG.WPF
 
                 for (var i = 0; i < tmp.Count; i++)
                 {
-                    await clientApi.PanierGlobalDetailPOSTAsync(new Panier_Global_Details_DTO()
+                    await clientApipanier.DetailsPOSTAsync(new Panier_Global_Details_DTO()
                     {
 
                         Id_references = tmp[i].ID_REFERENCE,
@@ -178,7 +182,7 @@ namespace CGCG.WPF
 
                 //on récupère les produits proposés par le fournisseur
                 Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)listFournisseurs.SelectedItem;
-                var listReferenceDetail = await clientApi.GetReferenceDetailsByFournisseurAsync(fournisseur.Id);
+                var listReferenceDetail = await clientApi.GetFournisseurReferenceByFournisseurAsync(fournisseur.Id);
 
                 try
                 {
@@ -188,7 +192,7 @@ namespace CGCG.WPF
                     foreach (Panier_Global_Details_DTO referencePanier in panierGlobalDetail)
                     {
                         //si la reference du panier global est proposé par le fournisseur sélectionné
-                        if (listReferenceDetail.FirstOrDefault(referenceDetail => referenceDetail.ID_REFERENCE == referencePanier.Id_references) != null)
+                        if (listReferenceDetail.FirstOrDefault(referenceDetail => referenceDetail.Id_references == referencePanier.Id_references) != null)
                         {
                             var reference = await clientApi.ReferenceGETAsync(referencePanier.Id_references);
                             sw.Write($"{reference.Reference};{referencePanier.Quantite};0\n");
@@ -227,9 +231,9 @@ namespace CGCG.WPF
                         if (offre.Length > 1 && offre[2] != "0")
                         {
                             var reference = await clientApi.GetByReferenceAsync(offre[0]);
-                            var reference_PanierGlobalDetail = listPanierGlobalDetail.FirstOrDefault(referenceDetail => referenceDetail.ID_REFERENCE == reference.Id);
+                            var reference_PanierGlobalDetail = listPanierGlobalDetail.FirstOrDefault(referenceDetail => referenceDetail.Id_references == reference.Id);
 
-                            await clientApi.OffreFournisseurPOSTAsync(new Panier_Fournisseurs_DTO()
+                            await clientApi.(new Panier_Fournisseurs_DTO()
                             {
                                 Puht = float.Parse(offre[2], NumberStyles.Any, ci),
                                 Id_fournisseur = fournisseur.Id,
@@ -245,7 +249,7 @@ namespace CGCG.WPF
 
             private async void btnDownloadFinalCart(object sender, RoutedEventArgs e)
             {
-                var semaine = (getWeek(DateTime.Now) + 1).ToString();
+                var semaine = (getWeek(DateTime.Now) + 1);
                 var clientApi = new Client("https://localhost:44362/", new HttpClient());
 
                 var listPanierGlobal = await clientApi.AllPanierGlobalAsync();
@@ -269,7 +273,7 @@ namespace CGCG.WPF
                         var reference = await clientApi.ReferenceGETAsync(panierGlobalDetail.Id_references);
                         var fournisseur = await clientApi.FournisseursGETAsync(bestOffre.Id_fournisseur);
 
-                        sw.Write($"{reference.Reference};{panierGlobalDetail.Quantite};{Math.Truncate(bestOffre.Puht * 1000) / 1000};{fournisseur.Societe}\n");
+                        sw.Write($"{reference.Reference};{panierGlobalDetail.Quantite};{Math.Truncate(Convert.ToDecimal(bestOffre.Puht) * 1000) / 1000};{fournisseur.Societe}\n");
 
                     }
                 }
