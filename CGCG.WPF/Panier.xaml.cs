@@ -21,9 +21,7 @@ using Microsoft.Win32;
 
 namespace CGCG.WPF
 {
-    /// <summary>
-    /// Logique d'interaction pour panier.xaml
-    /// </summary>
+
     public partial class panier : Page
     {
         
