@@ -36,7 +36,7 @@ namespace CGCG.WPF
             }
             private async void fecthAdherents()
             {
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
                 var adherents = await clientApi.AllAdherentAsync();
 
                 listAdherents.ItemsSource = adherents;
@@ -44,7 +44,7 @@ namespace CGCG.WPF
 
             private async void fetchFournisseurs()
             {
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
                 var fournisseurs = await clientApi.AllFournisseursAsync();
 
                 listFournisseurs.ItemsSource = fournisseurs;
@@ -67,8 +67,8 @@ namespace CGCG.WPF
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 if (openFileDialog.ShowDialog() == true && adherent != null)
                 {
-                    var clientApi = new Client("https://localhost:44362/", new HttpClient());
-                    var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
+                    var clientApi = new Client("https://localhost:44335/", new HttpClient());
+                    var clientApipanier = new PanierClient("https://localhost:44335/", new HttpClient());
 
 
                     var panierAdherent = await clientApipanier.AdherentPOSTAsync(new Panier_adherent_DTO()
@@ -108,8 +108,8 @@ namespace CGCG.WPF
             private async void btnDownloadGlobalCart(object sender, RoutedEventArgs e)
             {
                 var semaine = (getWeek(DateTime.Now) + 1);
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
-                var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
+                var clientApipanier = new PanierClient("https://localhost:44335/", new HttpClient());
 
             var panierGLobal = await clientApipanier.GlobalPOSTAsync(new Panier_Global_DTO()
                 {
@@ -151,7 +151,7 @@ namespace CGCG.WPF
 
                 try
                 {
-                    StreamWriter sw = new StreamWriter("C:\\Users\\rgdma\\Desktop\\panierGlobal.csv");
+                    StreamWriter sw = new StreamWriter("C:\\Users\\gouer\\Desktop\\fichierCSV\\panierGlobal.csv");
                     sw.Write("reference;quantite;prix unitaire HT\n");
 
                     for (var i = 0; i < tmp.Count; i++)
@@ -162,7 +162,7 @@ namespace CGCG.WPF
                     }
 
                     sw.Close();
-                    Process.Start("C:\\Users\\rgdma\\Desktop\\panierGlobal.csv");
+                    Process.Start("C:\\Users\\gouer\\Desktop\\fichierCSV\\panierGlobal.csv");
                 }
                 catch (Exception ex)
                 { }
@@ -170,7 +170,7 @@ namespace CGCG.WPF
 
             private async void btnDownloadFounirsseurCart(object sender, RoutedEventArgs e)
             {
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
 
                 //on trouve le panier global actif (moche mais pas d'autre choix dans la couche visuelle WPF)
                 var allPaniersGlobaux = await clientApi.AllPanierGlobalAsync();
@@ -184,7 +184,7 @@ namespace CGCG.WPF
 
                 try
                 {
-                    StreamWriter sw = new StreamWriter($"C:\\Users\\rgdma\\Desktop\\{fournisseur.Societe}_puht_vide.csv");
+                    StreamWriter sw = new StreamWriter($"C:\\Users\\gouer\\Desktop\\fichierCSV{fournisseur.Societe}_puht_vide.csv");
                     sw.Write("reference;quantite;prix unitaire HT\n");
 
                     foreach (Panier_Global_Details_DTO referencePanier in panierGlobalDetail)
@@ -205,8 +205,8 @@ namespace CGCG.WPF
 
             private async void btnUploadFounirsseurCart(object sender, RoutedEventArgs e)
             {
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
-                var clientApipanier = new PanierClient("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
+                var clientApipanier = new PanierClient("https://localhost:44335/", new HttpClient());
             Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)listFournisseurs.SelectedItem;
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -249,7 +249,7 @@ namespace CGCG.WPF
             private async void btnDownloadFinalCart(object sender, RoutedEventArgs e)
             {
                 var semaine = (getWeek(DateTime.Now) + 1);
-                var clientApi = new Client("https://localhost:44362/", new HttpClient());
+                var clientApi = new Client("https://localhost:44335/", new HttpClient());
 
                 var listPanierGlobal = await clientApi.AllPanierGlobalAsync();
                 var panierGlobal = listPanierGlobal.FirstOrDefault(panier => panier.Semaine == semaine);
@@ -258,7 +258,7 @@ namespace CGCG.WPF
 
                 var listOffresFournisseurs = await clientApi.AllPanierFournisseursAsync();
 
-                StreamWriter sw = new StreamWriter("C:\\Users\\rgdma\\Desktop\\panierFinal.csv");
+                StreamWriter sw = new StreamWriter("C:\\Users\\gouer\\Desktop\\fichierCSV\\panierFinal.csv");
                 sw.Write("reference;quantite;prix unitaire HT;fournisseur\n");
 
                 foreach (Panier_Global_Details_DTO panierGlobalDetail in listPanierGlobalDetails)
