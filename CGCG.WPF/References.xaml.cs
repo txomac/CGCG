@@ -46,7 +46,7 @@ namespace CGCG.WPF
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true && fournisseur != null)
             {
-                var clientApi = new Client("https://localhost:44335/", new HttpClient());
+                var clientApi = new Client("https://localhost:44355/", new HttpClient());
 
                 var referencesCSV = File.ReadAllText(openFileDialog.FileName).Split(new[] { '\r', '\n' });
 
@@ -59,7 +59,7 @@ namespace CGCG.WPF
         {
             insert_page.Visibility = Visibility.Hidden;
             grid_getall_reference.Visibility = Visibility.Visible;
-            Client client = new Client("https://localhost:44335", new HttpClient());
+            Client client = new Client("https://localhost:44355", new HttpClient());
             var references = await client.AllReferenceAsync();
 
             grid_getall_reference.ItemsSource = references;
@@ -72,7 +72,7 @@ namespace CGCG.WPF
 
             if (grid_getall_reference.SelectedItem != null)
             {
-                Client client = new Client("https://localhost:44335", new HttpClient());
+                Client client = new Client("https://localhost:44355", new HttpClient());
                 Reference_DTO reference = (Reference_DTO)grid_getall_reference.SelectedItem;
                 client.FournisseursDELETEAsync(reference.Id);
             }
@@ -80,7 +80,7 @@ namespace CGCG.WPF
 
         private async void listfournisseurs()
         {
-            var clientApi = new Client("https://localhost:44335/", new HttpClient());
+            var clientApi = new Client("https://localhost:44355/", new HttpClient());
             var fournisseurs = await clientApi.AllFournisseursAsync();
 
             listeFournisseur.ItemsSource = fournisseurs;

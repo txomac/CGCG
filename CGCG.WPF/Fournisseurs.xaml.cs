@@ -24,7 +24,7 @@ namespace CGCG.WPF
         {
             insert_page.Visibility = Visibility.Hidden;
             grid_getall_fournisseur.Visibility = Visibility.Visible;
-            Client client = new Client("https://localhost:44335", new HttpClient());
+            Client client = new Client("https://localhost:44355", new HttpClient());
             var fournisseur = await client.AllFournisseursAsync();
 
             grid_getall_fournisseur.ItemsSource = fournisseur;
@@ -43,7 +43,7 @@ namespace CGCG.WPF
 
         private async void valide_insert_Click(object sender, RoutedEventArgs e)
         {
-            Client client = new Client("https://localhost:44335", new HttpClient());
+            Client client = new Client("https://localhost:44355", new HttpClient());
             if (insert_nom != null && insert_prenom != null && insert_societe != null && insert_email != null && insert_status != null)
             {
                 await client.FournisseursPOSTAsync(new Fournisseurs_DTO()
@@ -71,7 +71,7 @@ namespace CGCG.WPF
 
             if (grid_getall_fournisseur.SelectedItem != null)
             {
-                Client client = new Client("https://localhost:44335", new HttpClient());
+                Client client = new Client("https://localhost:44355", new HttpClient());
                 Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)grid_getall_fournisseur.SelectedItem;
                 client.FournisseursPUTAsync(fournisseur);
             }
@@ -84,7 +84,7 @@ namespace CGCG.WPF
 
             if (grid_getall_fournisseur.SelectedItem != null)
             {
-                Client client = new Client("https://localhost:44335", new HttpClient());
+                Client client = new Client("https://localhost:44355", new HttpClient());
                 Fournisseurs_DTO fournisseur = (Fournisseurs_DTO)grid_getall_fournisseur.SelectedItem;
                 client.FournisseursDELETEAsync(fournisseur.Id);
             }

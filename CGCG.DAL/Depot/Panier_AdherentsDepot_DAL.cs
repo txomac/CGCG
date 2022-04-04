@@ -64,7 +64,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global, semaine)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL, @SEMAINE); select scope_identity()";
+            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global, semaine)" + " values (@ID_ADHERENTS, null, @SEMAINE); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
             commande.Parameters.Add(new SqlParameter("@SEMAINE", panier.semaine));
@@ -83,7 +83,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "update panier_adherents set id_adherent=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL, semain=@SEMAINE where ID=@ID";
+            commande.CommandText = "update panier_adherents set id_adherent=@ID_ADHERENTS, id_panier_global=@ID_PANIER_GLOBAL, semaine=@SEMAINE where ID=@ID";
             commande.Parameters.Add(new SqlParameter("@ID", panier.id));
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));

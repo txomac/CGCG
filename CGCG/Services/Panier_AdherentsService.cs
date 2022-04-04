@@ -30,7 +30,7 @@ namespace CGCG
 
         public Panier_Adherents Insert(Panier_Adherents p)
         {
-            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, p.id_panier_global,p.semaine);
+            var panier = new Panier_Adherents_DAL(p.id, p.id_adherents, null, p.semaine);
 
             depot.Insert(panier);
 

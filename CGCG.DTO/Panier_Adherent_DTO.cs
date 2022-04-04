@@ -10,7 +10,7 @@ namespace CGCG.DTO
     {
         public int id { get; set; }
         public int id_adherents { get; set; }
-        public int id_panier_global { get; set; }
+        public int? id_panier_global { get; set; }
         public int semaine { get; set; }
 
     }

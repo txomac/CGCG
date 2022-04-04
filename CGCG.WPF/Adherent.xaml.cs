@@ -38,7 +38,7 @@ namespace CGCG.WPF
         {
             insert_page.Visibility = Visibility.Hidden;
             grid_getall.Visibility = Visibility.Visible;
-            Client client = new Client("https://localhost:44335", new HttpClient());
+            Client client = new Client("https://localhost:44355", new HttpClient());
             var adherents = await client.AllAdherentAsync();
 
             grid_getall.ItemsSource = adherents;
@@ -58,7 +58,7 @@ namespace CGCG.WPF
         private async void valide_insert_Click(object sender, RoutedEventArgs e)
         {
             
-            Client client = new Client("https://localhost:44335", new HttpClient());
+            Client client = new Client("https://localhost:44355", new HttpClient());
             if (insert_nom != null && insert_prenom != null && insert_societe != null && insert_email != null && insert_status != null)
             {
                 await client.AdherentPOSTAsync(new Adherent_DTO()
@@ -87,7 +87,7 @@ namespace CGCG.WPF
 
             if (grid_getall.SelectedItem != null)
             {
-                Client client = new Client("https://localhost:44335", new HttpClient());
+                Client client = new Client("https://localhost:44355", new HttpClient());
                 Adherent_DTO adherent = (Adherent_DTO)grid_getall.SelectedItem;
                 client.AdherentPUTAsync(adherent);
             }
@@ -100,7 +100,7 @@ namespace CGCG.WPF
 
             if (grid_getall.SelectedItem != null)
             {
-                Client client = new Client("https://localhost:44335", new HttpClient());
+                Client client = new Client("https://localhost:44355", new HttpClient());
                 Adherent_DTO adherent = (Adherent_DTO)grid_getall.SelectedItem;
                 client.AdherentDELETEAsync(adherent.Id);
             }
