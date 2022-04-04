@@ -64,7 +64,7 @@ namespace CGCG.DAL
         {
             CreerConnexionEtCommande();
 
-            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global, semaine)" + " values (@ID_ADHERENTS, null, @SEMAINE); select scope_identity()";
+            commande.CommandText = "insert into panier_adherents(id_adherent, id_panier_global, semaine)" + " values (@ID_ADHERENTS, @ID_PANIER_GLOBAL, @SEMAINE); select scope_identity()";
             commande.Parameters.Add(new SqlParameter("@ID_ADHERENTS", panier.id_adherents));
             commande.Parameters.Add(new SqlParameter("@ID_PANIER_GLOBAL", panier.id_panier_global));
             commande.Parameters.Add(new SqlParameter("@SEMAINE", panier.semaine));
